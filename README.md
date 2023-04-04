@@ -9,7 +9,6 @@ Testar hur det funkar
 testar igen hej hå
 
 
-
 ## Subheader test
 
-## Subheader-2 text
+## Subheader 2
