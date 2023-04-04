@@ -6,7 +6,7 @@ A fictional group project on to analyze emergent competencies/job roles that may
 
 Testar hur det funkar
 
-
+testar igen hej hå
 
 
 
