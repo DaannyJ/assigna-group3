@@ -6,7 +6,7 @@ Our project is a design thinking analysis of emerging roles in the tech industry
 
 ---
 
-### 🧰 Languages and Tools Used
+### 🔠 Languages and Tools Used
 
 <img align="left" alt="Python" width="30px" style="padding-right:10px;" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"/>
 <img align="left" alt="Power Bi" width="30px" style="padding-right:10px;" src="https://github.com/microsoft/PowerBI-Icons/blob/main/SVG/Power-BI.svg" />
