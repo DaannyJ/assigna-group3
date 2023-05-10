@@ -17,3 +17,5 @@ df = df.dropna()
 
 # Print the resulting DataFrame
 df
+
+df.to_json("2006.json") #Updaterar filen
