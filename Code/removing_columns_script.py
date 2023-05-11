@@ -12,4 +12,4 @@ df = df.dropna()
 print(df.head)
 
 # skriver till ny csv fil
-df_selected.to_csv("FILNAMN")
+df_selected.to_csv("FILNAMN.csv")
