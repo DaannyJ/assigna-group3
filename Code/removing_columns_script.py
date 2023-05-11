@@ -4,8 +4,7 @@ import pandas as pd
 df = pd.read_csv('DIN FILEPATH HÄR')
 
 # Select only the desired columns
-df_selected = df[['headline','publication_date', 'description.text',
-                  'workplace_address.municipality_code']]
+df_selected = df[['headline','publication_date', 'description.text']]
 
 
 # drop all rows where there are null and nan
