@@ -1,58 +1,61 @@
 import streamlit as st
 import pandas as pd
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
 
-# Define the header
-st.title('Buzzwords Analysis')
+# Set up the header and description
+st.title("Buzzwords Analysis")
+st.sidebar.markdown("""
+    ## Description
+    Our tool is a buzzword checker designed to help companies improve their job ads. The tool utilizes a cosine similarity algorithm to compare the text of a job ad to a pre-defined list of industry-specific buzzwords and phrases. The tool identifies the presence of these buzzwords and assigns a score to the job ad based on how many buzzwords are included.
 
-# Define the description
-st.sidebar.markdown('''
-    Our tool is a buzzword checker designed to help companies improve their job ads. 
-    The tool utilizes a cosine similarity algorithm to compare the text of a job ad 
-    to a pre-defined list of industry-specific buzzwords and phrases. The tool identifies 
-    the presence of these buzzwords and assigns a score to the job ad based on how many 
-    buzzwords are included. This tool is invaluable for companies who want to ensure their 
-    job ads are attractive to top talent in their industry. By including the right buzzwords 
-    and phrases in their job ads, companies can make sure their job postings stand out and 
-    attract the right candidates. Our buzzword checker is designed to be fast and efficient, 
-    allowing companies to check their job ads quickly and easily. With our tool, companies 
-    can be confident that their job ads are optimized for maximum impact.
-''')
+    This tool is invaluable for companies who want to ensure their job ads are attractive to top talent in their industry. By including the right buzzwords and phrases in their job ads, companies can make sure their job postings stand out and attract the right candidates.
+""")
 
-# Define the input options
-input_type = st.radio('Select Input Type:', ('Text', 'File'))
+# Define the industry filter
+industry = st.sidebar.selectbox(
+    "Industry",
+    ("Private Sector", "Public Sector")
+)
 
-# If "Text" is selected, show a text box for input
-if input_type == 'Text':
-    input_text = st.text_input('Enter Text:')
-    # Convert the text input into a list of strings
-    input_list = [input_text]
+# Define the text input or file upload option
+option = st.sidebar.radio(
+    "Choose an option:",
+    ("Input Text", "Upload File")
+)
 
-# If "File" is selected, show a file upload button for input
+# Define the function to get the cosine similarity score
+def get_cosine_similarity_score(text1, text2):
+    corpus = [text1, text2]
+    vectorizer = CountVectorizer()
+    X = vectorizer.fit_transform(corpus)
+    similarity_scores = cosine_similarity(X)
+    return similarity_scores[0][1]
+
+# Define the main content area
+st.markdown("### Enter or Upload Job Ad Text")
+if option == "Input Text":
+    job_ad_text = st.text_area("Paste your job ad text here")
 else:
-    uploaded_file = st.file_uploader('Upload a File:', type=['txt'])
-    # If a file is uploaded, read its contents and convert it into a list of strings
+    uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        input_list = []
-        file_contents = uploaded_file.read().decode('utf-8')
-        input_list = [file_contents]
+        job_ad_text = uploaded_file.read()
+    else:
+        st.warning("Please upload a file or enter text.")
 
-# Define the buzzwords
+# Define the list of buzzwords and phrases
 buzzwords = ["du", "nej", "hej"]
 
-# Define the vectorizer and fit it to the buzzwords
-vectorizer = CountVectorizer(vocabulary=buzzwords)
+# Calculate the similarity score and buzzword count
+if job_ad_text:
+    similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
+    buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
+else:
+    similarity_score = 0
+    buzzword_count = 0
 
-# Define a function to calculate the cosine similarity between two texts
-def cosine_sim(input_text):
-    # Fit the vectorizer to the input text
-    X = vectorizer.fit_transform(input_text)
-    # Calculate the cosine similarity matrix
-    cosine_sim_matrix = cosine_similarity(X)
-    return cosine_sim_matrix[0][0]
+# Display the results
+st.markdown(f"### Results for {industry}")
+st.write(f"Cosine Similarity Score: {similarity_score:.2f}")
+st.write(f"Buzzword Count: {buzzword_count}")
 
-# Calculate the similarity score and display it
-if input_list:
-    similarity_score = cosine_sim(input_list)
-    st.write('Similarity Score:', similarity_score)
