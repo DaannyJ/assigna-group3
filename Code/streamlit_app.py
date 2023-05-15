@@ -1,38 +1,58 @@
 import streamlit as st
 import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 
-# Add the header
-st.header("Buzzwords analysis")
+# Define the header
+st.title('Buzzwords Analysis')
 
-# Add file uploader and text input
-data_file = st.file_uploader("Upload a file", type=["txt"])
-text_input = st.text_input("Enter text to analyze")
+# Define the description
+st.sidebar.markdown('''
+    Our tool is a buzzword checker designed to help companies improve their job ads. 
+    The tool utilizes a cosine similarity algorithm to compare the text of a job ad 
+    to a pre-defined list of industry-specific buzzwords and phrases. The tool identifies 
+    the presence of these buzzwords and assigns a score to the job ad based on how many 
+    buzzwords are included. This tool is invaluable for companies who want to ensure their 
+    job ads are attractive to top talent in their industry. By including the right buzzwords 
+    and phrases in their job ads, companies can make sure their job postings stand out and 
+    attract the right candidates. Our buzzword checker is designed to be fast and efficient, 
+    allowing companies to check their job ads quickly and easily. With our tool, companies 
+    can be confident that their job ads are optimized for maximum impact.
+''')
 
-# Define the buzzwords to search for
+# Define the input options
+input_type = st.radio('Select Input Type:', ('Text', 'File'))
+
+# If "Text" is selected, show a text box for input
+if input_type == 'Text':
+    input_text = st.text_input('Enter Text:')
+    # Convert the text input into a list of strings
+    input_list = [input_text]
+
+# If "File" is selected, show a file upload button for input
+else:
+    uploaded_file = st.file_uploader('Upload a File:', type=['txt'])
+    # If a file is uploaded, read its contents and convert it into a list of strings
+    if uploaded_file is not None:
+        input_list = []
+        file_contents = uploaded_file.read().decode('utf-8')
+        input_list = [file_contents]
+
+# Define the buzzwords
 buzzwords = ["du", "nej", "hej"]
 
-# Define function to analyze text
-def analyze_text(text):
-    # Convert text to lowercase for case-insensitive matching
-    text = text.lower()
-    
-    # Count occurrences of each buzzword in the text
-    counts = {buzzword: text.count(buzzword) for buzzword in buzzwords}
-    
-    # Create a DataFrame to store the results
-    df = pd.DataFrame.from_dict(counts, orient='index', columns=['count'])
-    
-    return df
+# Define the vectorizer and fit it to the buzzwords
+vectorizer = CountVectorizer(vocabulary=buzzwords)
 
-# Analyze data based on user input
-if data_file is not None:
-    # Read data from the uploaded file
-    data = data_file.read().decode("utf-8")
-    
-    # Analyze the data and display the results
-    result = analyze_text(data)
-    st.write(result)
-elif text_input != "":
-    # Analyze the text and display the results
-    result = analyze_text(text_input)
-    st.write(result)
+# Define a function to calculate the cosine similarity between two texts
+def cosine_sim(input_text):
+    # Fit the vectorizer to the input text
+    X = vectorizer.fit_transform(input_text)
+    # Calculate the cosine similarity matrix
+    cosine_sim_matrix = cosine_similarity(X)
+    return cosine_sim_matrix[0][0]
+
+# Calculate the similarity score and display it
+if input_list:
+    similarity_score = cosine_sim(input_list)
+    st.write('Similarity Score:', similarity_score)
