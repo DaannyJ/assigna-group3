@@ -40,25 +40,7 @@ data = pd.read_csv('fil')
 #     'rekrytering', 'annan', 'liknande', 'stöd', 'hemsida', 'krävs', 'samarbetsförmåga', 'tre', 'annat','erbjuda', 'löpande', 'senast', 'väl', 'göteborg', 'ansvarar', 'se', 'övriga', 'arbetsuppgifterna', 
 #     'skolan', 'flera', 'anställning', 'heltid', 'tar', 'ger', 'arbetsplatsuppgifter', 'omgående', 'samarbeta', 'cirka', 'arbetat', 'utifrån', 'ansvara', 'motsvarande', 'noggrann', 'arbets', 'bakgrund']
 
-###NYTT
-# Read the CSV file into a pandas DataFrame
-# Calculate the number of rows
-num_rows = len(data)
-# Calculate the length of each ad description
-data['description_length'] = data['description'].str.len()
-# Create a bar chart to display the number of job ads and description length
-plt.figure(figsize=(8, 6))  # Adjust the figure size as per your preference
-plt.bar(['Number of Job Ads', 'Description Length'], [num_rows, data['description_length'].mean()])
-# Add data labels to the bars
-for i, value in enumerate([num_rows, data['description_length'].mean()]):
-    plt.text(i, value, str(value), ha='center', va='bottom')
-# Add labels and title to the chart
-plt.xlabel('Metrics')
-plt.ylabel('Value')
-plt.title('Job Ad Data Analysis')
-# Display the chart
-plt.show()
-###NYTTTT
+
 
 ## Tokenization, stemming and stopword removal
 def preprocess_swedish_text(text):
@@ -76,26 +58,6 @@ def preprocess_swedish_text(text):
 
 # # # use this if you want to  REPLACE "description.text" column with the preprocessed text column
 data['description'] = data['description'].apply(preprocess_swedish_text)  ## verkar vara olika i olika dataset
-
-###NYTT
-# Read the CSV file into a pandas DataFrame
-# Calculate the number of rows
-num_rows = len(data)
-# Calculate the length of each ad description
-data['description_length'] = data['description'].str.len()
-# Create a bar chart to display the number of job ads and description length
-plt.figure(figsize=(8, 6))  # Adjust the figure size as per your preference
-plt.bar(['Number of Job Ads', 'Description Length'], [num_rows, data['description_length'].mean()])
-# Add data labels to the bars
-for i, value in enumerate([num_rows, data['description_length'].mean()]):
-    plt.text(i, value, str(value), ha='center', va='bottom')
-# Add labels and title to the chart
-plt.xlabel('Metrics')
-plt.ylabel('Value')
-plt.title('Job Ad Data Analysis')
-# Display the chart
-plt.show()
-###NYTTTT
 
 # # # Write preprocessed data to a new CSV file
 data.to_csv("preprocessed_data_4.csv", index=False)
