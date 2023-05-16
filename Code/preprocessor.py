@@ -11,14 +11,15 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 
-from Visualization import visualize_data # EDA for the preprocessing
+# from Visualization import visualize_data # EDA for the preprocessing
 from language_remover import language_remover # For removing non swedish ads
 
-## Load your CSV
-data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/datasets/subset_all_years_1000.csv')
+## Load DA CSV
+data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/datasets/2022_downsampled_10000.csv', index_col=0)
+
 
 ## Removing punctuation, numbers. Tokenization, stemming and stopword removal
-def preprocess_swedish_text(text):    
+def preprocess_swedish_text(text):
     translator = str.maketrans(string.punctuation, ' ' * len(string.punctuation)) # replaces special characters with spaces
     text = text.translate(translator)   # applies it to the text
 
@@ -33,15 +34,13 @@ def preprocess_swedish_text(text):
     # return (stemmed_tokens)            ## TWO VARIANTS here
     return ' '.join(stemmed_tokens)     ## This one removes quotes between tokens. Reduces filesize a bit in the end
 
-print(data)
 # call on the language_remover
-language_remover(data['description'])
-print(data)
+swedish_ads = language_remover(data)
+print('JOSAJDOASJDASDJDAJSDJDASJAJDSJSJJDAJJDAJDSA', swedish_ads, "EEEEEEEEEEEERRRRRRREEEEEEEEEEEE")
 
 # Runs the preprocessor. REPLACES "description.text" column with the preprocessed text column
 #data['description'] = data['description'].apply(preprocess_swedish_text)    
                                                                             
-
 # # # Write preprocessed data to a new CSV file
 # data.to_csv("preprocessed_data_15.csv", index=False)
 

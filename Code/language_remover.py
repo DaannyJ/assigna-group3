@@ -1,7 +1,5 @@
-def language_remover():
+def language_remover(df):
     from langdetect import detect
-
-    df = pd.read_csv("2022_downsampled_10000.csv", index_col=0)
 
     def detect_language(text):
         try:
@@ -9,6 +7,8 @@ def language_remover():
         except:
             return None
 
-    df['language'] = df['description'].apply(detect_language)
+    df['language'] = df['description.text'].apply(detect_language)
 
     swedish_df = df[df['language'] == 'sv']
+    swedish_df.drop('language', axis=1, inplace=True)
+    return swedish_df
