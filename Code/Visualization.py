@@ -39,4 +39,4 @@ def visualize_data(df):
     plt.show()
 
     
-visualize_data(df)
+
