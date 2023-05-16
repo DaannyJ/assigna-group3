@@ -7,7 +7,7 @@ def language_remover(df):
         except:
             return None
 
-    df['language'] = df['description.text'].apply(detect_language)
+    df['language'] = df['description'].apply(detect_language)
 
     swedish_df = df[df['language'] == 'sv']
     swedish_df.drop('language', axis=1, inplace=True)

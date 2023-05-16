@@ -15,7 +15,7 @@ from Visualization import * # EDA for the preprocessing
 from language_remover import language_remover # For removing non swedish ads
 
 ## Load DA CSV
-data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/datasets/2022_downsampled_10000.csv', index_col=0)
+data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/datasets/sample_1000_per_year.csv', index_col=0)
 
 visualize_data(data)
 ## Removing punctuation, numbers. Tokenization, stemming and stopword removal
@@ -38,7 +38,7 @@ def preprocess_swedish_text(text):
 swedish_ads = language_remover(data)
 
 # Runs the preprocessor. REPLACES "description.text" column with the preprocessed text column
-swedish_ads['description.text'] = swedish_ads['description.text'].apply(preprocess_swedish_text)    
+swedish_ads['description'] = swedish_ads['description'].apply(preprocess_swedish_text)    
 
 visualize_data(swedish_ads)
 
