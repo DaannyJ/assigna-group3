@@ -1,8 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-def visualize_data(csv_file):
+def visualize_data(df):
     # Read the CSV file into a pandas DataFrame
-    df = pd.read_csv(csv_file)
+   
 
     # Calculate the number of job ads (rows)
     num_rows = len(df)
