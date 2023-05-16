@@ -8,7 +8,7 @@ df_selected = df[['headline','publication_date', 'description.text']]
 
 
 # drop all rows where there are null and nan
-df = df.dropna()
+df_selected = df.dropna()
 print(df.head)
 
 # skriver till ny csv fil
