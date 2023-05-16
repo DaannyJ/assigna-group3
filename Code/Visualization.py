@@ -9,10 +9,10 @@ def visualize_data(df):
     num_rows = len(df)
 
     # Calculate the length of each ad description
-    df['description_length'] = df['description'].str.len()
+    desc_len = df['description.text'].str.len()  ### WARNING! Description.text or not
 
     # Calculate the average word length
-    word_lengths = df['description'].str.split().apply(lambda x: [len(w) for w in x])
+    word_lengths = df['description.text'].str.split().apply(lambda x: [len(w) for w in x])
     avg_word_length = np.mean([item for sublist in word_lengths for item in sublist])
 
     # Calculate the median word length
@@ -20,7 +20,7 @@ def visualize_data(df):
 
     # Create a bar chart to display the number of job ads, description length, average word length, and median word length
     metrics = ['Number of Job Ads', 'Description Length', 'Average Word Length', 'Median Word Length']
-    values = [num_rows, df['description_length'].mean(), avg_word_length, median_word_length]
+    values = [num_rows, desc_len.mean(), avg_word_length, median_word_length]
 
     plt.figure(figsize=(10, 6))
     plt.bar(metrics, values)
