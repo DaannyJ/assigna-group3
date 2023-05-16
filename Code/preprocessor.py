@@ -14,7 +14,7 @@ from nltk.stem.snowball import SnowballStemmer
 from Visualization import * # EDA for the preprocessing
 from language_remover import language_remover # For removing non swedish ads
 
-## Load DA CSV
+## Load da CSV
 data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/datasets/sample_1000_per_year.csv', index_col=0)
 
 visualize_data(data)
@@ -49,5 +49,5 @@ print(swedish_ads)
 # data.to_csv("preprocessed_data_15.csv", index=False)
 
 # pd.set_option('display.max_colwidth', 120)
-# df = pd.DataFrame(data.description)
+# df = pd.DataFrame(swedish_ads.description)
 # print(df.head(20))
