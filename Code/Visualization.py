@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 def visualize_data(df):
     # Read the CSV file into a pandas DataFrame
    
@@ -10,13 +11,24 @@ def visualize_data(df):
     # Calculate the length of each ad description
     df['description_length'] = df['description'].str.len()
 
-    # Create a bar chart to display the number of job ads and description length
-    plt.figure(figsize=(8, 6))  # Adjust the figure size as per your preference
-    plt.bar(['Number of Job Ads', 'Description Length'], [num_rows, df['description_length'].mean()])
+    # Calculate the average word length
+    word_lengths = df['description'].str.split().apply(lambda x: [len(w) for w in x])
+    avg_word_length = np.mean([item for sublist in word_lengths for item in sublist])
+
+    # Calculate the median word length
+    median_word_length = np.median([item for sublist in word_lengths for item in sublist])
+
+    # Create a bar chart to display the number of job ads, description length, average word length, and median word length
+    metrics = ['Number of Job Ads', 'Description Length', 'Average Word Length', 'Median Word Length']
+    values = [num_rows, df['description_length'].mean(), avg_word_length, median_word_length]
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(metrics, values)
 
     # Add data labels to the bars
-    for i, value in enumerate([num_rows, df['description_length'].mean()]):
-        plt.text(i, value, str(value), ha='center', va='bottom')
+    for i, value in enumerate(values):
+        plt.text(i, value, str(round(value, 2)), ha='center', va='bottom')
+
 
     # Add labels and title to the chart
     plt.xlabel('Metrics')
@@ -26,3 +38,5 @@ def visualize_data(df):
     # Display the chart
     plt.show()
 
+    
+visualize_data(df)
