@@ -28,5 +28,7 @@ data = [
     ['Installations- och serviceelektriker'],
     ['Kundtjänstpersonal'],
     ['Motorfordonsmekaniker och fordonsreparatörer'],
-    ['Ingenjörer och tekniker inom elektroteknik']
+    ['Ingenjörer och tekniker inom elektroteknik'],
+    ['Programmerare'],
+    ['Projektledare']
 ]
