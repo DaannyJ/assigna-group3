@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -11,12 +10,6 @@ st.sidebar.markdown("""
 
     This tool is invaluable for companies who want to ensure their job ads are attractive to top talent in their industry. By including the right buzzwords and phrases in their job ads, companies can make sure their job postings stand out and attract the right candidates.
 """)
-
-# Define the industry filter
-industry = st.sidebar.selectbox(
-    "Industry",
-    ("Private Sector", "Public Sector")
-)
 
 # Define the text input or file upload option
 option = st.sidebar.radio(
@@ -43,11 +36,55 @@ else:
     else:
         st.warning("Please upload a file or enter text.")
 
-# Define the list of buzzwords and phrases
-buzzwords = ["du", "nej", "hej"]
+# Define the list of job titles
+job_titles = [
+    'Undersköterskor, hemtjänst, hemsjukvård och äldreboende',
+    'Grundskollärare',
+    'Butikssäljare, fackhandel',
+    'Lager- och terminalpersonal',
+    'Mjukvaru- och systemutvecklare m.fl.',
+    'Barnskötare',
+    'Butikssäljare, dagligvaror',
+    'Företagssäljare',
+    'Vårdbiträden',
+    'Städare',
+    'Vårdare, boendestödjare',
+    'Övriga kontorsassistenter och sekreterare',
+    'Personliga assistenter',
+    'Förskollärare',
+    'Restaurang- och köksbiträden m.fl.',
+    'Planerare och utredare m.fl.',
+    'Lastbilsförare m.fl.',
+    'Grundutbildade sjuksköterskor',
+    'Maskinställare och maskinoperatörer, metallarbete',
+    'Träarbetare, snickare m.fl.',
+    'Fastighetsskötare',
+    'Elevassistenter m.fl.',
+    'Lednings- och organisationsutvecklare',
+    'Kockar och kallskänkor',
+    'Undersköterskor, vård- och specialavdelning',
+    'Ekonomiassistenter m.fl.',
+    'Installations- och serviceelektriker',
+    'Kundtjänstpersonal',
+    'Motorfordonsmekaniker och fordonsreparatörer',
+    'Ingenjörer och tekniker inom elektroteknik'
+]
+
+# Define the search function
+def search_job_titles(query):
+    matches = [title for title in job_titles if query.lower() in title.lower()]
+    return matches
+
+# Search for job titles based on user input
+search_query = st.sidebar.text_input("Search Job Titles")
+search_results = search_job_titles(search_query)
+
+# Display the search results
+selected_titles = st.sidebar.multiselect("Select Job Titles", search_results)
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
+    buzzwords = ["du", "nej", "hej"]
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
 else:
@@ -55,7 +92,12 @@ else:
     buzzword_count = 0
 
 # Display the results
-st.markdown(f"### Results for {industry}")
+st.markdown("### Results")
 st.write(f"Cosine Similarity Score: {similarity_score:.2f}")
 st.write(f"Buzzword Count: {buzzword_count}")
 
+# Display selected job titles
+if selected_titles:
+    st.markdown("### Selected Job Titles")
+    for title in selected_titles:
+        st.write(title)
