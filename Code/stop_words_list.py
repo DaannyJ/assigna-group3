@@ -94,7 +94,7 @@ swedish_stopwords += english_stopwords
 
 
 #NYA BLYAT
-job_roles = [
+stopwords_list = [
     'arbet',
     'kund',
     'sök',
