@@ -34,3 +34,4 @@ swedish_ads.to_csv("preprocessed_swe_1.csv", index=False)
 # pd.set_option('display.max_colwidth', 120)
 # df = pd.DataFrame(swedish_ads.description)
 # print(df.head(20))
+#2022_cleaned_correct_4col_correct_10000rows_clean_correct
