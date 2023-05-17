@@ -1,5 +1,10 @@
 from collections import Counter
 from nltk import ngrams
+import pandas as pd
+
+data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/code/preprocessed_swe_1.csv', index_col=0)
+
+
 
 def get_top_grams(df, row_limit, num_grams):
     # Limit the DataFrame to the specified number of rows
@@ -9,10 +14,17 @@ def get_top_grams(df, row_limit, num_grams):
     all_grams = []
 
     # Extract monograms and bigrams from tokenized descriptions
+    # for desc in df['description']:
+    #     monograms = desc
+    #     bigrams = list(ngrams(desc, 2, pad_left=True, pad_right=True))
+    #     all_grams.extend(monograms + bigrams)
+
+
     for desc in df['description']:
         monograms = desc
         bigrams = list(ngrams(desc, 2, pad_left=True, pad_right=True))
-        all_grams.extend(monograms + bigrams)
+        all_grams.extend(monograms)
+        all_grams.extend(bigrams)
 
     # Count the occurrences of each monogram and bigram
 
@@ -23,6 +35,10 @@ def get_top_grams(df, row_limit, num_grams):
     top_grams = gram_counts.most_common(num_grams)
 
     return top_grams
+
+top_grams = get_top_grams(data, 200, 50)
+for gram, count in top_grams:
+    print(gram, ":", count)
 
 '''
 # Example usage:
