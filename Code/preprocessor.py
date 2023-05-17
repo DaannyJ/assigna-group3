@@ -23,5 +23,5 @@ def preprocess_swedish_text(text):
 
     stemmer = SnowballStemmer('swedish')
     stemmed_tokens = [stemmer.stem(token) for token in filtered_tokens]
-    # return (stemmed_tokens)            ## TWO VARIANTS here
-    return ' '.join(stemmed_tokens)     ## This one removes quotes between tokens. Reduces filesize a bit in the end
+    return (stemmed_tokens)            ## TWO VARIANTS here
+    # return ' '.join(stemmed_tokens)     ## This one removes quotes between tokens
