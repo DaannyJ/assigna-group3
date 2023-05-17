@@ -12,11 +12,6 @@ st.sidebar.markdown("""
     This tool is invaluable for companies who want to ensure their job ads are attractive to top talent in their industry. By including the right buzzwords and phrases in their job ads, companies can make sure their job postings stand out and attract the right candidates.
 """)
 
-# Define the industry filter
-industry = st.sidebar.selectbox(
-    "Industry",
-    ("Private Sector", "Public Sector")
-)
 
 # Define the text input or file upload option
 option = st.sidebar.radio(
