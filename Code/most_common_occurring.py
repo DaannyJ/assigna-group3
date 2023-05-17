@@ -15,6 +15,13 @@ def get_top_grams(df, row_limit, num_grams):
     for desc in df['description']:
         grams = desc.split()
         all_grams.extend(grams)
+    
+    # List of words to exclude from the most common grams
+    excluded_words = ['word1', 'word2', 'word3']  # Add the words you want to exclude here
+
+    # Remove excluded words from all_grams
+    all_grams = [gram for gram in all_grams if gram not in excluded_words]
+
     # Count the occurrences of each monogram and bigram
     gram_counts = Counter(all_grams)
 
@@ -22,10 +29,6 @@ def get_top_grams(df, row_limit, num_grams):
     top_grams = gram_counts.most_common(num_grams)
 
     return top_grams
-
-top_grams = get_top_grams(data, 200, 50)
-for gram, count in top_grams:
-    print(gram, ":", count)
 
 '''
 # Example usage:
