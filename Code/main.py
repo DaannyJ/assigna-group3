@@ -24,7 +24,7 @@ print(swedish_ads)
 
 
 # # # Write preprocessed data to a new CSV file
-# data.to_csv("preprocessed_data_15.csv", index=False)
+data.to_csv("preprocessed_swe_1.csv", index=False)
 
 # # # exploratory crap
 # pd.set_option('display.max_colwidth', 120)
