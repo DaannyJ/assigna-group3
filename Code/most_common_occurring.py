@@ -16,11 +16,11 @@ def get_top_grams(df, row_limit, num_grams):
         grams = desc.split()
         all_grams.extend(grams)
     
-    # List of words to exclude from the most common grams
-    excluded_words = ['arbet','kund','sök','hos','tjänst','topwork','komm','medarbet','person','nya','erfaren','god','rätt','utveckl','roll','anställning','vill','ska','får','vikt','jobb','samt','båd','finn','krav','företag','kunskap','svensk','utmaning','tid','möj','mål','uppdrag','stor','hitt','körkort','rekrytering','trygg','bygg','erbjud','även','b','in','konsult','stött','sen','del','oavset','arbetsuppgift','meriter']  # Add the words you want to exclude here
+    excluded_words = ['arbet', 'kund', 'sök', 'hos', 'tjänst', 'topwork', 'komm', 'medarbet', 'person', 'nya', 'erfaren', 'god', 'rätt', 'utveckl', 'roll', 'anställning', 'vill', 'ska', 'får', 'vikt', 'jobb', 'samt', 'båd', 'finn', 'krav', 'företag', 'kunskap', 'svensk', 'utmaning', 'tid', 'möj', 'mål', 'uppdrag', 'stor', 'hitt', 'körkort', 'rekrytering', 'trygg', 'bygg', 'erbjud', 'även', 'b', 'in', 'konsult', 'stött', 'sen', 'del', 'oavset', 'arbetsuppgift', 'meriter']
 
-    # Remove excluded words from all_grams
-    all_grams = [gram for gram in all_grams if gram not in excluded_words]
+# Remove excluded words from all_grams
+    all_grams = [gram for gram in all_grams if not any(word in gram for word in excluded_words)]
+
 
     # Count the occurrences of each monogram and bigram
     gram_counts = Counter(all_grams)
