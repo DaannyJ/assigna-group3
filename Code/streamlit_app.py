@@ -76,7 +76,7 @@ job_titles = [
     'Motorfordonsmekaniker och fordonsreparatörer',
     'Ingenjörer och tekniker inom elektroteknik'
 ]
-
+#s
 # Define the search function
 def search_job_titles(query):
     matches = [title for title in job_titles if query.lower() in title.lower()]
