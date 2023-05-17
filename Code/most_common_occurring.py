@@ -8,17 +8,16 @@ def get_top_grams(df, row_limit, num_grams):
     # Limit the DataFrame to the specified number of rows
     df = df.head(row_limit)
 
-    # Tokenize each description
-    tokenized_descriptions = [word_tokenize(desc.lower()) for desc in df['description.text']]
-
     # Create a list to store all monograms and bigrams
     all_grams = []
 
     # Extract monograms and bigrams from tokenized descriptions
-    for desc in tokenized_descriptions:
+    for desc in df['description']:
         monograms = desc
         bigrams = list(ngrams(desc, 2, pad_left=True, pad_right=True))
         all_grams.extend(monograms + bigrams)
+
+    # Count the occurrences of each monogram and bigram
 
     # Count the occurrences of each monogram and bigram
     gram_counts = Counter(all_grams)

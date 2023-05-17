@@ -1,3 +1,32 @@
+
+
+import pandas as pd
+from nltk.tokenize import word_tokenize
+
+def remove_custom_words(df, custom_words=None):
+    if custom_words is None:
+        
+        custom_words = ['word1', 'word2','word3']  # Default list of custom words to remove
+
+    # Tokenize and filter words for each row in the "ndescription" column
+    df["description"] = df["description"].apply(lambda x: [word for word in x if word.lower() not in custom_words])
+
+    return df
+'''
+# Example:
+# Load the dataset into a pandas DataFrame
+df = pd.read_csv('file.csv')
+# Call the function without providing custom_words parameter
+df_without_custom_words = remove_custom_words(df)
+# Print the modified DataFrame
+print(df_without_custom_words)
+'''
+
+
+
+
+#GAMLA
+'''
 import nltk
 from nltk.corpus import stopwords
 
@@ -63,3 +92,4 @@ exclude_words = [
 
 swedish_stopwords += exclude_words
 swedish_stopwords += english_stopwords
+'''
