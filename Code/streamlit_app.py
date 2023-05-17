@@ -12,7 +12,6 @@ st.sidebar.markdown("""
     This tool is invaluable for companies who want to ensure their job ads are attractive to top talent in their industry. By including the right buzzwords and phrases in their job ads, companies can make sure their job postings stand out and attract the right candidates.
 """)
 
-
 # Define the text input or file upload option
 option = st.sidebar.radio(
     "Choose an option:",
@@ -71,7 +70,7 @@ job_titles = [
     'Motorfordonsmekaniker och fordonsreparatörer',
     'Ingenjörer och tekniker inom elektroteknik'
 ]
-#s
+
 # Define the search function
 def search_job_titles(query):
     matches = [title for title in job_titles if query.lower() in title.lower()]
@@ -88,6 +87,7 @@ for result in search_results:
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
+    buzzwords = ["du", "nej", "hej"]
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
 else:
@@ -95,6 +95,5 @@ else:
     buzzword_count = 0
 
 # Display the results
-st.markdown(f"### Results for {industry}")
 st.write(f"Cosine Similarity Score: {similarity_score:.2f}")
 st.write(f"Buzzword Count: {buzzword_count}")
