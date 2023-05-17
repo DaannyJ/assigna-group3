@@ -2,7 +2,7 @@ from collections import Counter
 from nltk import ngrams
 import pandas as pd
 
-data = pd.read_csv('C:/Users/danie/Documents/assigna-group3/Code/preprocessed_swe_1.csv', index_col=0)
+data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/code/preprocessed_swe_1.csv', index_col=0)
 
 def get_top_grams(df, row_limit, num_grams):
     # Limit the DataFrame to the specified number of rows
@@ -17,7 +17,7 @@ def get_top_grams(df, row_limit, num_grams):
         all_grams.extend(grams)
     
     # List of words to exclude from the most common grams
-    excluded_words = ['word1', 'word2', 'word3']  # Add the words you want to exclude here
+    excluded_words = ['arbet','kund','sök','hos','tjänst','topwork','komm','medarbet','person','nya','erfaren','god','rätt','utveckl','roll','anställning','vill','ska','får','vikt','jobb','samt','båd','finn','krav','företag','kunskap','svensk','utmaning','tid','möj','mål','uppdrag','stor','hitt','körkort','rekrytering','trygg','bygg','erbjud','även','b','in','konsult','stött','sen','del','oavset','arbetsuppgift','meriter']  # Add the words you want to exclude here
 
     # Remove excluded words from all_grams
     all_grams = [gram for gram in all_grams if gram not in excluded_words]
@@ -29,6 +29,12 @@ def get_top_grams(df, row_limit, num_grams):
     top_grams = gram_counts.most_common(num_grams)
 
     return top_grams
+
+top_grams = get_top_grams(data, 200, 50)
+for gram, count in top_grams:
+    print(gram, end='')
+
+
 
 '''
 # Example usage:
