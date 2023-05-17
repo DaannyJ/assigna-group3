@@ -1,8 +1,5 @@
-import pandas as pd
-import nltk
 from collections import Counter
 from nltk import ngrams
-from nltk.tokenize import word_tokenize
 
 def get_top_grams(df, row_limit, num_grams):
     # Limit the DataFrame to the specified number of rows
