@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -81,9 +80,7 @@ search_query = st.sidebar.text_input("Search Job Titles")
 search_results = search_job_titles(search_query)
 
 # Display the search results
-st.sidebar.markdown("### Search Results")
-for result in search_results:
-    st.sidebar.write(result)
+selected_titles = st.sidebar.multiselect("Select Job Titles", search_results)
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
@@ -95,5 +92,12 @@ else:
     buzzword_count = 0
 
 # Display the results
+st.markdown("### Results")
 st.write(f"Cosine Similarity Score: {similarity_score:.2f}")
 st.write(f"Buzzword Count: {buzzword_count}")
+
+# Display selected job titles
+if selected_titles:
+    st.markdown("### Selected Job Titles")
+    for title in selected_titles:
+        st.write(title)
