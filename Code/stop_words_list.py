@@ -144,5 +144,6 @@ stopwords_list = [
     'del',
     'oavset',
     'arbetsuppgift',
-    'meriter'
+    'meriter',
+    'aidss'
 ]
