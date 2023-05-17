@@ -6,9 +6,9 @@ from language_remover import language_remover # For removing non swedish ads
 from preprocessor import preprocess_swedish_text # removes special characters and numbers, tokenizes, stems, and removes stopwords
 
 ## Load you CSV. Pay attention to if your CSV has "description.text" or "description". Change code accordingly
-data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/datasets/sample_1000_per_year.csv', index_col=0)
+data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/datasets/2022_downsampled_10000.csv', index_col=0)
 
-'''
+
 # visualize data about your texts before processing. Takes a dataframe
 visualize_data(data)
 
@@ -22,11 +22,11 @@ swedish_ads['description'] = swedish_ads['description'].apply(preprocess_swedish
 visualize_data(swedish_ads)
 
 print(swedish_ads)
-'''
+
 
 
 # # # Write preprocessed data to a new CSV file
-# data.to_csv("preprocessed_data_15.csv", index=False)
+data.to_csv("preprocessed_swe_2.csv", index=False)
 
 # # # exploratory stuff
 # pd.set_option('display.max_colwidth', 120)
