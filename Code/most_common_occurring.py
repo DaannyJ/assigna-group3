@@ -70,5 +70,3 @@ top_grams = get_top_grams(df, row_limit, num_grams)
 for gram, count in top_grams:
     print(gram, ":", count)
 '''
-
-
