@@ -22,15 +22,21 @@ def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
         combinations = list(ngrams(words, 2))
         all_combinations.extend(combinations)
 
-    # Excluded words and combinations
+    # Excluded words and combinations are stored within functions in separate files
+    # These are stored in excluded_words_list.py
     excluded_words = excluded_monograms()
     excluded_combinations = excluded_bigrams()
+    # Buzz mono and bigrams are stored in buzz_words_list.py
     buzz_words = buzz_monograms()
     buzz_combinations = buzz_bigrams()
 
-    # Remove excluded words and combinations
-    all_words = [word for word in all_words if word not in excluded_words and word not in buzz_words]
-    all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations and combination not in buzz_combinations]
+    # Remove excluded words and combinations. These are found in excluded_words
+    all_words = [word for word in all_words if word not in excluded_words]
+    all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations]
+
+    # Remove excluded words and combinations and also remove words in the buzz_words_list.py
+    # all_words = [word for word in all_words if word not in excluded_words and word not in buzz_words]
+    # all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations and combination not in buzz_combinations]
 
 
 
@@ -45,7 +51,7 @@ def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
     return top_words, top_combinations
 
 
-top_words, top_combinations = get_top_words_and_combinations(data, 10000, 50, 50)
+top_words, top_combinations = get_top_words_and_combinations(data, 10000, 100, 100)
 
 print("Most common words:")
 for word, count in top_words:
