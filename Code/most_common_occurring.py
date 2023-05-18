@@ -3,7 +3,7 @@ from nltk import ngrams
 import pandas as pd
 import re
 
-data = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv', index_col=0)
+data = pd.read_csv('C:/Users/danie/Documents/assigna-group3/Code/preprocessed_swe_1.csv', index_col=0)
 
 def get_top_grams(df, row_limit, num_grams):
     # Limit the DataFrame to the specified number of rows
