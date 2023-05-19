@@ -49,7 +49,7 @@ else:
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = buzz_monograms(), buzz_bigrams()
+    buzzwords = buzz_monograms()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
 else:
