@@ -4,8 +4,9 @@ import pandas as pd
 import re
 from excluded_words_list import *
 from buzz_words_list import *
+from Visualization import *
 
-data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/code/preprocessed_swe_1.csv')
+data = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
 
 def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
     # Limit the DataFrame to the specified number of rows
@@ -35,8 +36,8 @@ def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
     all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations]
 
     # Remove excluded words and combinations and also remove words in the buzz_words_list.py
-    # all_words = [word for word in all_words if word not in excluded_words and word not in buzz_words]
-    # all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations and combination not in buzz_combinations]
+    all_words = [word for word in all_words if word not in excluded_words and word not in buzz_words]
+    all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations and combination not in buzz_combinations]
 
 
 
