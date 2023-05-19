@@ -32,7 +32,17 @@ if option == "Input Text":
 else:
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        job_ad_text = uploaded_file.read().decode('utf-8')  # Read the file and decode as UTF-8
+        # Try different encodings until successful decoding
+        encodings = ["utf-8", "latin-1", "utf-16"]
+        for encoding in encodings:
+            try:
+                job_ad_text = uploaded_file.read().decode(encoding)
+                break
+            except UnicodeDecodeError:
+                continue
+        else:
+            st.error("Failed to decode the uploaded file. Please try a different file.")
+            job_ad_text = ""
     else:
         job_ad_text = ""
 
