@@ -52,7 +52,7 @@ def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
     return top_words, top_combinations
 
 
-top_words, top_combinations = get_top_words_and_combinations(data, 10000, 100, 100)
+top_words, top_combinations = get_top_words_and_combinations(data, 1000, 50, 50)
 
 print("Most common words:")
 for word, count in top_words:

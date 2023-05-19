@@ -212,6 +212,26 @@ def buzz_monograms():
 'trivsel',
 'kreativitet',
 
+'generös',
+'kliv',
+'inklusiv',
+'resultatinrik',
+'talent',
+'kvalitativ',
+'stjärn',
+
+'initiativrik',
+'arbetsmoral',
+'värdeord',
+'kontaktnät',
+'karriärsteg',
+'prisbelönt',
+'account',
+'säkerhetsmedvet',
+'kvalitetsmedvet',
+'expansion',
+
+
      ]
 
 def buzz_bigrams():
@@ -428,5 +448,22 @@ def buzz_bigrams():
 ('balan', 'arbet'),
 ('såväl', 'självständ'),
 
+('utman', 'tjänst'),
+('hög', 'ambition'),
+('självständ', 'driv'),
+('glad', 'positiv'),
+('vilj', 'utveckl'),
+('maximer', 'ersättning'),
+('bäst', 'villkor'),
+('flexibilitet', 'måst'),
+('skap', 'relation'),
+('team', 'arbet'),
+('kontak', 'ansvar'),
+('gott', 'arbetsklim'),
+('egn', 'beslut'),
+
+('trygg', 'person'),
+('lil', 'extr'),
+('bra', 'tempo'),
 
      ]
