@@ -32,9 +32,9 @@ if option == "Input Text":
 else:
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
-        job_ad_text = uploaded_file.read()
+        job_ad_text = uploaded_file.read().decode('utf-8')  # Read the file and decode as UTF-8
     else:
-        st.warning("Please upload a file or enter text.")
+        job_ad_text = ""
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
