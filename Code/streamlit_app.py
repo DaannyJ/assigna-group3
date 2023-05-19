@@ -1,6 +1,7 @@
 import streamlit as st
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
+from buzz_words_list import *
 
 # Set up the header and description
 st.title("Buzzwords Analysis")
@@ -48,7 +49,7 @@ else:
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = ["du", "nej", "hej"]
+    buzzwords = buzz_monograms()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
 else:
