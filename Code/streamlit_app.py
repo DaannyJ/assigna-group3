@@ -55,7 +55,14 @@ else:
     similarity_score = 0
     buzzword_count = 0
 
+# Define the CSS styling for the similarity score
+score_style = "color: green"
+if similarity_score >= 0.8:
+    score_style = "color: red"
+elif similarity_score >= 0.5:
+    score_style = "color: orange"
+
 # Display the results
 st.markdown("### Results")
-st.write(f"Cosine Similarity Score: {similarity_score:.2f}")
+st.markdown(f'<p style="{score_style}">Cosine Similarity Score: {similarity_score:.2f}</p>', unsafe_allow_html=True)
 st.write(f"Buzzword Count: {buzzword_count}")
