@@ -56,9 +56,9 @@ else:
     buzzword_count = 0
 
 # Define the CSS styling for the similarity score box
-score_style = f"border: 2px solid {'red' if similarity_score >= 0.8 else 'green'}; padding: 5px; border-radius: 5px;"
+score_style = f"display: inline-block; padding: 5px; border: 2px solid {'red' if similarity_score >= 0.8 else 'green'}; border-radius: 5px;"
 
 # Display the results
 st.markdown("### Results")
-st.markdown(f'<div style="{score_style}">Cosine Similarity Score: {similarity_score:.2f}</div>', unsafe_allow_html=True)
+st.markdown(f'<span style="{score_style}">Cosine Similarity Score: {similarity_score:.2f}</span>', unsafe_allow_html=True)
 st.write(f"Buzzword Count: {buzzword_count}")
