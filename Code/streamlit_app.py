@@ -36,52 +36,6 @@ else:
     else:
         st.warning("Please upload a file or enter text.")
 
-# Define the list of job titles
-job_titles = [
-    'Undersköterskor, hemtjänst, hemsjukvård och äldreboende',
-    'Grundskollärare',
-    'Butikssäljare, fackhandel',
-    'Lager- och terminalpersonal',
-    'Mjukvaru- och systemutvecklare m.fl.',
-    'Barnskötare',
-    'Butikssäljare, dagligvaror',
-    'Företagssäljare',
-    'Vårdbiträden',
-    'Städare',
-    'Vårdare, boendestödjare',
-    'Övriga kontorsassistenter och sekreterare',
-    'Personliga assistenter',
-    'Förskollärare',
-    'Restaurang- och köksbiträden m.fl.',
-    'Planerare och utredare m.fl.',
-    'Lastbilsförare m.fl.',
-    'Grundutbildade sjuksköterskor',
-    'Maskinställare och maskinoperatörer, metallarbete',
-    'Träarbetare, snickare m.fl.',
-    'Fastighetsskötare',
-    'Elevassistenter m.fl.',
-    'Lednings- och organisationsutvecklare',
-    'Kockar och kallskänkor',
-    'Undersköterskor, vård- och specialavdelning',
-    'Ekonomiassistenter m.fl.',
-    'Installations- och serviceelektriker',
-    'Kundtjänstpersonal',
-    'Motorfordonsmekaniker och fordonsreparatörer',
-    'Ingenjörer och tekniker inom elektroteknik'
-]
-
-# Define the search function
-def search_job_titles(query):
-    matches = [title for title in job_titles if query.lower() in title.lower()]
-    return matches
-
-# Search for job titles based on user input
-search_query = st.sidebar.text_input("Search Job Titles")
-search_results = search_job_titles(search_query)
-
-# Display the search results
-selected_titles = st.sidebar.multiselect("Select Job Titles", search_results)
-
 # Calculate the similarity score and buzzword count
 if job_ad_text:
     buzzwords = ["du", "nej", "hej"]
@@ -95,10 +49,3 @@ else:
 st.markdown("### Results")
 st.write(f"Cosine Similarity Score: {similarity_score:.2f}")
 st.write(f"Buzzword Count: {buzzword_count}")
-
-# Display selected job titles
-if selected_titles:
-    st.markdown("### Selected Job Titles")
-    for title in selected_titles:
-        st.write(title)
-#s
