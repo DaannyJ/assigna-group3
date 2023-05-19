@@ -31,12 +31,12 @@ def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
     buzz_combinations = buzz_bigrams()
 
     # Remove excluded words and combinations. These are found in excluded_words
-    all_words = [word for word in all_words if word not in excluded_words]
-    all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations]
+    # all_words = [word for word in all_words if word not in excluded_words]
+    # all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations]
 
     # Remove excluded words and combinations and also remove words in the buzz_words_list.py
-    # all_words = [word for word in all_words if word not in excluded_words and word not in buzz_words]
-    # all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations and combination not in buzz_combinations]
+    all_words = [word for word in all_words if word not in excluded_words and word not in buzz_words]
+    all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations and combination not in buzz_combinations]
 
 
 
