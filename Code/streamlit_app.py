@@ -55,12 +55,18 @@ else:
     similarity_score = 0
     buzzword_count = 0
 
+# Define the color thresholds
+high_threshold = 0.8
+low_threshold = 0.5
+
 # Format the similarity score dynamically based on its value
 score_color = ""
-if similarity_score > 0.8:
+if similarity_score > high_threshold:
     score_color = "red"
-elif similarity_score < 0.5:
+elif similarity_score < low_threshold:
     score_color = "green"
+else:
+    score_color = "orange"
 
 # Display the results
 st.markdown("### Results")
