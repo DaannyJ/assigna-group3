@@ -3,32 +3,116 @@ from collections import Counter
 from preprocessor import preprocess_swedish_text
 from excluded_words_list import * 
 
-# Read the text file as a single string
-with open('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/code/text_input.txt', 'r', encoding='utf-8') as file:
-    content = file.read()
+# Read the text file into a DataFrame
+df = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/code/text_input.txt', sep='\t', header=None, names=['description'], encoding='utf-8')
 
-# Create a DataFrame with a single column
-df = pd.DataFrame({'description': [content]})
+# Set display option for column width
 pd.set_option('display.max_colwidth', None)
 
-# Print the DataFrame
 df['description'] = df['description'].apply(preprocess_swedish_text)
+print(type(df))
+print(df['description'])
 
-print(df)
+# # # Format df with ''
+# def format_df(df):
+#     for _, row in df.iterrows():
+#         description = row['description']
+#         return description
+    
+# asdf = (format_df(df))
+# print(asdf)
+# print(type(asdf))
+    
+# df_new = pd.DataFrame({'description': [asdf]})
+# print(df_new)
+# print(type(df_new))
 
-def excluder(df_col):
+
+# def get_top_words_and_combinations(df):
+
+#     # Create lists to store all words and combinations
+#     all_words = []
+#     all_combinations = []
+
+#     # Extract words and combinations from tokenized descriptions
+#     for desc in df['description']:
+#         words = re.findall(r'\w+', desc.lower())
+#         all_words.extend(words)
+#         combinations = list(ngrams(words, 2))
+#         all_combinations.extend(combinations)
+
+#     # Excluded words and combinations are stored within functions in separate files
+#     # These are stored in excluded_words_list.py
+#     excluded_words = excluded_monograms()
+#     excluded_combinations = excluded_bigrams()
+
+#     all_words = [word for word in all_words if word not in excluded_words]
+#     all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations]
 
 
-    # Excluded monograms
-    excluded_monos = excluded_monograms()
-    description_filtered = [word for word in df_col if word not in excluded_monos]
-
-    # Excluded bigrams
-    excluded_bis = excluded_bigrams()
-    description_filtered = [description_filtered[i] for i in range(len(description_filtered)-1) if (description_filtered[i], description_filtered[i+1]) not in excluded_bis]
-
-    return description_filtered
+#     return all_words, all_combinations
 
 
-print("👃"*70)
-print(excluder(df['description']))
+# words, combinations = get_top_words_and_combinations(df)
+
+# print(words, combinations)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# def excluder(data_frame):
+#     # Extract words and combinations from tokenized descriptions
+#     for desc in data_frame['description']:
+#         words = re.findall(r'\w+', desc.lower())
+#         all_words.extend(words)
+#         combinations = list(ngrams(words, 2))
+#         all_combinations.extend(combinations)
+
+#     all_words = []
+#     all_combinations = []
+
+#     # Get files
+#     excluded_words = excluded_monograms()
+#     excluded_combinations = excluded_bigrams()
+
+#     # Exclude words and word combos
+#     all_words = [word for word in all_words if word not in excluded_words]
+#     all_combinations = [combination for combination in all_combinations if combination not in excluded_combinations]
+
+
+#     return all_words, all_combinations
+
+
+# df = (excluder(df))
+# print("\n \n \n")
+# print(df)
