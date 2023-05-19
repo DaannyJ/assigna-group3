@@ -2,14 +2,11 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 def visualize_data(df):
-    # Read the CSV file into a pandas DataFrame
-   
-
     # Calculate the number of job ads (rows)
     num_rows = len(df)
 
-    # Calculate the length of each ad description
-    desc_len = df['description'].str.len()  ### WARNING! Description.text or not
+    # Calculate the length of each ad description without counting commas and periods
+    desc_len = df['description'].apply(lambda x: len(x.replace(',', '').replace('.', '')))
 
     # Calculate the average word length
     word_lengths = df['description'].str.split().apply(lambda x: [len(w) for w in x])
@@ -28,7 +25,6 @@ def visualize_data(df):
     # Add data labels to the bars
     for i, value in enumerate(values):
         plt.text(i, value, str(round(value, 2)), ha='center', va='bottom')
-
 
     # Add labels and title to the chart
     plt.xlabel('Metrics')

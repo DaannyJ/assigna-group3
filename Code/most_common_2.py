@@ -4,8 +4,9 @@ import pandas as pd
 import re
 from excluded_words_list import *
 from buzz_words_list import *
+from Visualization import *
 
-data = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/code/preprocessed_swe_1.csv')
+data = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
 
 def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
     # Limit the DataFrame to the specified number of rows
