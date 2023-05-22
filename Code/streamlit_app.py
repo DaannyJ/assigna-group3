@@ -4,30 +4,13 @@ from sklearn.feature_extraction.text import CountVectorizer
 from buzz_words_list import *
 
 # Set up the header and description
-st.set_page_config(page_title="Buzzwords Analysis", page_icon="🔎", layout="wide")
-st.markdown(
-    """
-    <style>
-    body {
-        background-color: blue;
-    }
-    .sidebar .sidebar-content {
-        background-color: blue;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 st.title("Buzzwords Analysis")
-st.sidebar.markdown(
-    """
+st.sidebar.markdown("""
     ## Description
     Our tool is a buzzword checker designed to help companies improve their job ads. The tool utilizes a cosine similarity algorithm to compare the text of a job ad to a pre-defined list of industry-specific buzzwords and phrases. The tool identifies the presence of these buzzwords and assigns a score to the job ad based on how many buzzwords are included.
 
     This tool is invaluable for companies who want to ensure their job ads are attractive to top talent in their industry. By including the right buzzwords and phrases in their job ads, companies can make sure their job postings stand out and attract the right candidates.
-    """
-)
+""")
 
 # Define the text input or file upload option
 option = st.sidebar.radio(
@@ -73,7 +56,7 @@ else:
     similarity_score = 0
     buzzword_count = 0
 
-# Define the color thresholds
+# Define the color thresholds#
 high_threshold = 0.8
 low_threshold = 0.5
 
