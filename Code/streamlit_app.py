@@ -14,12 +14,6 @@ st.sidebar.markdown(
     """
 )
 
-# Define the text input or file upload option
-option = st.sidebar.radio(
-    "Choose an option:",
-    ("Input Text", "Upload File")
-)
-
 # Define the function to get the cosine similarity score
 def get_cosine_similarity_score(text1, text2):
     corpus = [text1, text2]
@@ -28,29 +22,9 @@ def get_cosine_similarity_score(text1, text2):
     similarity_scores = cosine_similarity(X)
     return similarity_scores[0][1]
 
-# Define the job roles
-job_roles = ["sjuksköterska", "sjuksyster", "mekaniker", "analytiker"]
-
 # Define the main content area
-st.markdown("### Enter or Upload Job Ad Text")
-if option == "Input Text":
-    job_ad_text = st.text_area("Paste your job ad text here")
-else:
-    uploaded_file = st.file_uploader("Choose a file")
-    if uploaded_file is not None:
-        # Try different encodings until successful decoding
-        encodings = ["utf-8", "latin-1", "utf-16"]
-        for encoding in encodings:
-            try:
-                job_ad_text = uploaded_file.read().decode(encoding)
-                break
-            except UnicodeDecodeError:
-                continue
-        else:
-            st.error("Failed to decode the uploaded file. Please try a different file.")
-            job_ad_text = ""
-    else:
-        job_ad_text = ""
+st.markdown("### Enter Job Ad Text")
+job_ad_text = st.text_area("Paste your job ad text here")
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
@@ -73,11 +47,6 @@ elif similarity_score < low_threshold:
     score_color = "green"
 else:
     score_color = "orange"
-
-# Filter job roles
-search_job_role = st.sidebar.text_input("Search for a Job Role")
-filtered_job_roles = [role for role in job_roles if search_job_role.lower() in role.lower()]
-selected_job_role = st.sidebar.selectbox("Select a Job Role", filtered_job_roles)
 
 # Display the results
 st.markdown("### Results")
