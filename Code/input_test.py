@@ -4,14 +4,22 @@ from preprocessor import preprocess_swedish_text
 from excluded_words_list import * 
 
 # Read the text file into a DataFrame
-df = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/code/text_input.txt', sep='\t', header=None, names=['description'], encoding='utf-8')
+#df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/text_input.txt', sep='\t', header=None, names=['description'], encoding='utf-8')
+df = pd.read_table('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/text_input.txt', header= None, names=['description'], encoding='utf-8')
 
 # Set display option for column width
 pd.set_option('display.max_colwidth', None)
+print(type(df['description']))
+#remove /n
+#df['description'] = df['description'].strip() #funkar ej
+df['description'] = df['description'].str.replace(r'\n', '')
 
+print(df['description'])
 df['description'] = df['description'].apply(preprocess_swedish_text)
 print(type(df))
 print(df['description'])
+print(df.head)
+
 
 # # # Format df with ''
 # def format_df(df):

@@ -1,5 +1,6 @@
 def excluded_monograms():
      return [
+'n',
 'arbet',
 'sök',
 'komm',

@@ -11,11 +11,14 @@ def preprocess_swedish_text(text):
     from nltk.tokenize import word_tokenize
     from nltk.corpus import stopwords
     from nltk.stem.snowball import SnowballStemmer
-
+    
     translator = str.maketrans(string.punctuation, ' ' * len(string.punctuation)) # replaces special characters with spaces
     text = text.translate(translator)   # applies it to the text
 
-    text = re.sub(r'\d+', "", text)     # Removes numbers
+    
+    text = re.sub(r'[\d+]', "", text)     # Removes numbers
+    print(text)
+    
 
     tokens = word_tokenize(str(text), language='swedish')  # Tokenizer. Str conversion needed or errors will happen
     stop_words = set(stopwords.words('swedish'))
