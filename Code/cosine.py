@@ -1,13 +1,13 @@
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from excluded_words_list import *
+from buzz_words_list import *
 import numpy as np
 
 df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')  # Replace 'your_dataframe.csv' with the actual filename
-ex_mono = excluded_monograms()
-ex_bi = excluded_bigrams()
-word_list = ex_mono + ex_bi
+mono_buzz = buzz_monograms()
+bi_buzz = buzz_bigrams()
+word_list = mono_buzz + bi_buzz
 descriptions = df['description'].tolist()
 documents = descriptions + word_list
 documents = [str(document) for document in documents]
@@ -32,3 +32,7 @@ for i, score in enumerate(description_scores):
 print(f"\nAverage score of all descriptions: {average_score}")
 
 
+# Choose a specific description by index
+selected_index = int(input("\nEnter the index of the description you want to choose: "))
+selected_description = df.iloc[selected_index]['description']
+print(f"\nSelected description: {selected_description}")
