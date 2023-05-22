@@ -12,6 +12,10 @@ st.sidebar.markdown("""
     This tool is invaluable for companies who want to ensure their job ads are attractive to top talent in their industry. By including the right buzzwords and phrases in their job ads, companies can make sure their job postings stand out and attract the right candidates.
 """)
 
+# Define the job role filter
+job_roles = ["Job Role 1", "Job Role 2", "Job Role 3"]  # Add your desired job roles here
+selected_job_role = st.sidebar.selectbox("Select a Job Role", job_roles)
+
 # Define the text input or file upload option
 option = st.sidebar.radio(
     "Choose an option:",
@@ -56,7 +60,7 @@ else:
     similarity_score = 0
     buzzword_count = 0
 
-# Define the color thresholds#
+# Define the color thresholds
 high_threshold = 0.8
 low_threshold = 0.5
 
