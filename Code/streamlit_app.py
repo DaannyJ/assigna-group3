@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 from buzz_words_list import *
@@ -26,9 +27,12 @@ def get_cosine_similarity_score(text1, text2):
 st.markdown("### Enter Job Ad Text")
 job_ad_text = st.text_area("Paste your job ad text here")
 
+# Convert input text to DataFrame
+df = pd.DataFrame({"Job Ad Text": [job_ad_text]})
+
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = ["hej", "nej", "välkommen"]
+    buzzwords = ["INSERT BUZZ WORDS HERE"]
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
 else:
@@ -52,3 +56,6 @@ else:
 st.markdown("### Results")
 st.markdown(f"Cosine Similarity Score: <span style='color:{score_color};'>{similarity_score:.2f}</span>", unsafe_allow_html=True)
 st.write(f"Buzzword Count: {buzzword_count}")
+
+# Export DataFrame to another file (e.g., CSV)
+df.to_csv("job_ad_data.csv", index=False)
