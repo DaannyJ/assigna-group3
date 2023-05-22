@@ -41,7 +41,7 @@ else:
     similarity_score = 0
     buzzword_count = 0
 
-# Define the color thresholds
+# Define the color thresholds s
 high_threshold = 0.8
 low_threshold = 0.5
 
