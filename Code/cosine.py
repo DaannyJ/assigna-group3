@@ -1,3 +1,4 @@
+'''
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -19,8 +20,7 @@ bi_buzz = buzz_bigrams()
 descriptions = df['description'].tolist()
 word_list_strings = [' '.join(tup) for tup in bi_buzz]
 word_list = mono_buzz + word_list_strings
-documents = descriptions + word_list  #_strings
-
+documents = descriptions + mono_buzz #word_list  #_strings
 
 vectorizer = TfidfVectorizer() # NY
 #vectorizer = CountVectorizer()
@@ -48,6 +48,56 @@ print(f"\nAverage score of all descriptions: {average_score}")
 selected_index = int(input("\nEnter the index of the description you want to choose: "))
 selected_description = df.iloc[selected_index]['description']
 
+
+print("\nSelected description:")
+print(selected_description)
+'''
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+from buzz_words_list import *
+import numpy as np
+from colorama import Fore, Style
+from termcolor import colored
+
+df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
+pd.set_option('display.max_colwidth', 100)
+
+mono_buzz = buzz_monograms()
+bi_buzz = buzz_bigrams()
+
+# Combine the descriptions and word list
+descriptions = df['description'].tolist()
+word_list_strings = [' '.join(tup) for tup in bi_buzz]
+word_list = mono_buzz + word_list_strings
+documents = descriptions + word_list
+
+vectorizer = TfidfVectorizer()
+vectorized_documents = vectorizer.fit_transform(documents)
+
+# Calculate similarity between descriptions and word list
+similarity_descriptions_word_list = cosine_similarity(vectorized_documents[:len(descriptions)], vectorized_documents[len(descriptions):])
+
+# Extract similarity scores for each description
+description_scores = similarity_descriptions_word_list.max(axis=1)
+
+# Calculate the average score of all descriptions
+average_score = np.mean(description_scores)
+
+# Calculate the average score of all descriptions
+
+
+print("Description Index\tHeadline\t\t\tSimilarity Score")
+print("--------------------------------------------------------------")
+for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
+    print(f"{i}\t\t\t{headline}\t\t\t{score}")
+
+print(f"\nAverage score of all descriptions: {average_score}")
+
+# Choose a specific description by index
+selected_index = int(input("\nEnter the index of the description you want to choose: "))
+selected_description = df.iloc[selected_index]['description']
 
 print("\nSelected description:")
 print(selected_description)
