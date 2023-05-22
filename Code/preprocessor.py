@@ -1,6 +1,6 @@
 ### HELLO!!
 ### This is code that removes special characters and numbers, tokenizes, stems, and removes stopwords from a column in a csv 
-
+nltk.download('punkt')
 ## Removing punctuation, numbers. Tokenization, stemming and stopword removal
 def preprocess_swedish_text(text):
 
