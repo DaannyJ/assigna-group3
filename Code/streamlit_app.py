@@ -28,7 +28,7 @@ job_ad_text = st.text_area("Paste your job ad text here")
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = ["INSERT BUZZ WORDS HERE"]
+    buzzwords = ["hej", "nej", "välkommen"]
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
 else:
