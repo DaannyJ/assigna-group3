@@ -3,8 +3,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
     ### At the moment this works with preprocessed data
-df = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/local_copy/2022_10k_stemmed_headlines_swe.csv')
-roles_df = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/local_copy/work_roles_3pp+.csv')
+df = pd.read_csv('C:/Users/timbarn/Documents/TIG326/kod till projektet/local_copy/2022_10k_stemmed_headlines_swe.csv')
+roles_df = pd.read_csv('C:/Users/timbarn/Documents/TIG326/kod till projektet/local_copy/work_roles_3pp+.csv')
 pd.set_option('display.max_colwidth', 2)
 # print(df['headline'])
 # print(roles_df['roles'])
