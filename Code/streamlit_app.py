@@ -28,7 +28,7 @@ st.markdown("### Enter Job Ad Text")
 job_ad_text = st.text_area("Paste your job ad text here")
 
 # Convert input text to DataFrame
-df = pd.DataFrame({"Job Ad Text": [job_ad_text]})
+df = pd.DataFrame({"job_ad_text": [job_ad_text]})
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
