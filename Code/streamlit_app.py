@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer
 from buzz_words_list import *
+from preprocessor import *
 
 # Set up the header and description
 st.title("Buzzwords Analysis")
@@ -29,10 +30,11 @@ job_ad_text = st.text_area("Paste your job ad text here")
 
 # Convert input text to DataFrame
 df = pd.DataFrame({"job_ad_text": [job_ad_text]})
+df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)    
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = ["INSERT BUZZ WORDS HERE"]
+    buzzwords = buzz_monograms()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if word in job_ad_text.lower()])
 else:
