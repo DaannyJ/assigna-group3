@@ -5,12 +5,14 @@ from buzz_words_list import *
 
 # Set up the header and description
 st.title("Buzzwords Analysis")
-st.sidebar.markdown("""
+st.sidebar.markdown(
+    """
     ## Description
     Our tool is a buzzword checker designed to help companies improve their job ads. The tool utilizes a cosine similarity algorithm to compare the text of a job ad to a pre-defined list of industry-specific buzzwords and phrases. The tool identifies the presence of these buzzwords and assigns a score to the job ad based on how many buzzwords are included.
 
     This tool is invaluable for companies who want to ensure their job ads are attractive to top talent in their industry. By including the right buzzwords and phrases in their job ads, companies can make sure their job postings stand out and attract the right candidates.
-""")
+    """
+)
 
 # Define the text input or file upload option
 option = st.sidebar.radio(
@@ -25,6 +27,9 @@ def get_cosine_similarity_score(text1, text2):
     X = vectorizer.fit_transform(corpus)
     similarity_scores = cosine_similarity(X)
     return similarity_scores[0][1]
+
+# Define the job roles
+job_roles = ["sjuksköterska", "sjuksyster", "mekaniker", "analytiker"]
 
 # Define the main content area
 st.markdown("### Enter or Upload Job Ad Text")
@@ -56,7 +61,7 @@ else:
     similarity_score = 0
     buzzword_count = 0
 
-# Define the color thresholds#
+# Define the color thresholds
 high_threshold = 0.8
 low_threshold = 0.5
 
@@ -68,6 +73,11 @@ elif similarity_score < low_threshold:
     score_color = "green"
 else:
     score_color = "orange"
+
+# Filter job roles
+search_job_role = st.sidebar.text_input("Search for a Job Role")
+filtered_job_roles = [role for role in job_roles if search_job_role.lower() in role.lower()]
+selected_job_role = st.sidebar.selectbox("Select a Job Role", filtered_job_roles)
 
 # Display the results
 st.markdown("### Results")
