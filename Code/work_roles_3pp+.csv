@@ -1,0 +1,329 @@
+roles
+"['3d', 'grafik']"
+['administratör']
+['advok']
+['agronom']
+['anläggningsarbet']
+['anläggningsdyk']
+"['anläggningsingenjör', 'järnväg']"
+['apotek']
+['apoteksteknik']
+"['arbetsled', 'järnväg']"
+['arbetsmiljöingenjör']
+['arbetsmiljöinspektör']
+['arbetsterapeut']
+['arkeolog']
+['arkitek']
+"['art', 'direct']"
+"['asfaltsarbet', 'beläggningsarbet']"
+"['au', 'pair']"
+['audionom']
+['automationsteknik']
+['bag']
+['bangårdsarbet']
+['banteknik']
+['barnsköt']
+['banktjänsteman']
+['barnmorsk']
+['bartend']
+['behandlingsassistent']
+['bergarbet']
+['betongarbet']
+['bibliotekari']
+['bilförsälj']
+['bilskadereparatör']
+['bilrekonditioner']
+['biolog']
+"['biomedicinsk', 'analytik']"
+['blogg']
+['boendestödj']
+['bokbind']
+['brandingenjör']
+['brandman']
+['brevbär']
+['bussför']
+['butikschef']
+['byggingenjör']
+['byggnadsplåtslag']
+['båtbygg']
+['civilingenjör']
+"['cnc', 'operatör']"
+['controll']
+['copywrit']
+['dans']
+['dietist']
+['djursköt']
+['driftteknik']
+['ekonom']
+['ekonomiassistent']
+['elektrik']
+"['el', 'kontaktledningteknik']"
+['elevassistent']
+['entreprenör']
+['eventkoordinat']
+['fartygsbefäl']
+['fastighetsmäkl']
+['fastighetsförvalt']
+['fastighetsingenjör']
+['fastighetssköt']
+['fastighetsteknik']
+['fastighetsvärd']
+['florist']
+['flygled']
+['flygmekanik']
+"['flygvärdin', 'flygvärd']"
+['fordonsmontör']
+['fordonslacker']
+['fotograf']
+['fotterapeut']
+['frisör']
+['fritidsled']
+['fritidspedagog']
+['fysik']
+['fysioterapeut']
+['förfat']
+['förskollär']
+"['geolog', 'geovetaryrk']"
+"['gis', 'ingenjör']"
+['glasmäst']
+['golvlägg']
+"['grafisk', 'formgiv']"
+['grundskollär']
+['gruvarbet']
+['guid']
+['guldsmed']
+['gymnasielär']
+['gynekolog']
+['hotellreceptionist']
+['hovmäst']
+['hovslag']
+['hudterapeut']
+['håltag']
+['hästsköt']
+['idrottslär']
+['influenc']
+['ingenjör']
+"['ingenjör', 'bygg']"
+['inköp']
+['innovatör']
+['inredningsarkitek']
+['inredningssnick']
+"['it', 'arkitek']"
+['journalist']
+['jurist']
+['jägmäst']
+['kemist']
+['kiroprak']
+['kock']
+"['kommunikatör', 'informatör']"
+['kondit']
+['konferensvärd']
+['konsult']
+['kranför']
+['kriminalvård']
+['kriminolog']
+['kundtjänstmedarbet']
+['kurat']
+"['kyl', 'värmepumpsteknik']"
+['lagerarbet']
+['landskapsarkitek']
+['lantbruk']
+['lantmät']
+"['larm', 'säkerhetsteknik']"
+['lastbilsmekanik']
+['lastbilsför']
+['ljudteknik']
+['logistik']
+['logoped']
+['lokför']
+['låssmed']
+['läk']
+['läkarsekreter']
+['lärarassistent']
+['lär']
+['makeupartist']
+['marknadsassistent']
+['marknadsför']
+['marknadskoordinat']
+['maskinför']
+"['maskinför', 'lantbruk']"
+['maskinmekanik']
+['maskiningenjör']
+['massör']
+['matro']
+['miljövårdsyrk']
+['montör']
+['mur']
+['musik']
+['mål']
+['mäkl']
+['möbelsnick']
+['nagelterapeut']
+['nationalekonom']
+"['nautisk', 'befäl']"
+['nätverksteknik']
+['optik']
+"['original', 'prepressteknik']"
+['ortoped']
+['personbilsmekanik']
+"['person', 'assistent']"
+"['person', 'trän']"
+['pilot']
+['plattsät']
+['polis']
+"['pr', 'ansvar']"
+['processoperatör']
+['projektled']
+"['projektchef', 'järnväg']"
+"['projektör', 'järnväg']"
+"['projektled', 'järnväg']"
+['produktionsteknik']
+['programmer']
+['präst']
+['psykolog']
+['receptari']
+['redovisningskonsult']
+['rekt']
+['renhållningsarbet']
+['reservdelsspecialist']
+['resesälj']
+['revis']
+['röntgensjukskötersk']
+['saneringsarbet']
+['servitör']
+['signalteknik']
+['sjukgymn']
+['sjukskötersk']
+['skogsmaskinför']
+['skogsmäst']
+['skrädd']
+['skådespel']
+"['sköt', 'psykiatrisk', 'vård']"
+"['slakt', 'styck']"
+['smed']
+"['snick', 'träarbet']"
+"['social', 'medi', 'manag']"
+['socialsekreter']
+['socionom']
+['socialpedagog']
+['sold']
+"['sos', 'larmoperatör']"
+"['sot', 'skorstensfej']"
+"['speciallär', 'specialpedagog']"
+['specialistunderskötersk']
+['spelutveckl']
+['spårsvets']
+['stenmontör']
+"['studi', 'yrkesvägled']"
+['ställningsbygg']
+['svets']
+['systemförvalt']
+['systemutveckl']
+"['it', 'säkerhetsansvar']"
+['sälj']
+['takmontör']
+['tandhygienist']
+['tandläk']
+"['tandskötersk', 'sköt']"
+['tandteknik']
+['tatuer']
+"['teknisk', 'befäl']"
+"['teknisk', 'specialist']"
+['testled']
+['tolk']
+['tågtrafikled']
+['trafiklär']
+['travträn']
+['tryck']
+['trädgårdsingenjör']
+['trädgårdsmäst']
+['tulltjänsteman']
+['turistinformatör']
+['tvätteriarbet']
+['tågreparatör']
+['tågteknik']
+['tågtrafikled']
+['tågvärd']
+['underskötersk']
+['undertaksmontör']
+"['universitet', 'högskolelär']"
+['utred']
+['webbanalytik']
+['webbdesign']
+['webbredaktör']
+['ventilationsmontör']
+['verkstadssnick']
+['verktygsmak']
+['veterinär']
+"['vvs', 'montör', 'rörmok']"
+['väkt']
+['återvinningsarbet']
+['översät']
+"['net', 'utveckl']"
+"['3d', 'grafik']"
+"['ai', 'trän']"
+['användbarhetsexpert']
+['användbarhetsarkitek']
+['applikationsutveckl']
+"['back', 'end', 'utveckl']"
+"['cross', 'medi', 'produc']"
+['cybersold']
+['databasspecialist']
+['databasadministratör']
+['dataingenjör']
+['dataspelsutveckl']
+['datasäkerhetsansvar']
+['datavet']
+['datateknik']
+"['devop', 'integrer']"
+"['digital', 'design']"
+"['digital', 'kommunikatör']"
+['embeddedutveckl']
+"['etisk', 'hack']"
+"['front', 'end', 'utveckl']"
+"['fullstack', 'utveckl']"
+"['gis', 'utveckl']"
+['hårdvarudesign']
+['informationsarkitek']
+['interaktionsdesign']
+"['nätverksteknik']"
+"['it', 'ansvar', 'it', 'samordn']"
+"['it', 'arkitek']"
+"['it', 'chef']"
+"['it', 'driftteknik']"
+"['it', 'forensik']"
+"['it', 'konsult']"
+"['it', 'objektled']"
+"['it', 'molnspecialist']"
+"['it', 'projektled']"
+"['it', 'strateg']"
+"['kvalitetssäkr', 'test', 'it']"
+['leveldesign']
+['mjukvarudesign']
+['nätverksadministratör']
+"['php', 'utveckl']"
+['produktvisualiser']
+['programmer']
+"['seo', 'specialist']"
+['supportteknik']
+['systemadministratör']
+['systemarkitek']
+['systemförvalt']
+['systemintegratör']
+['systemteknik']
+['systemtest']
+['systemutveckl']
+['systemäg']
+"['säkerhetsansvar', 'it']"
+['sökmotoroptimer']
+['testled']
+"['ux', 'design']"
+"['vfx', 'artist']"
+"['vr', 'utveckl']"
+['webbansvar']
+['webbdesign']
+['webbmast']
+['webbproducent']
+['webbredaktör']
+['webbstrateg']
+['webbutveckl']
