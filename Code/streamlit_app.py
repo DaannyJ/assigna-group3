@@ -8,8 +8,11 @@ st.set_page_config(page_title="Buzzwords Analysis", page_icon="🔎", layout="wi
 st.markdown(
     """
     <style>
-    .reportview-container {
-        background: red;
+    body {
+        background-color: blue;
+    }
+    .sidebar .sidebar-content {
+        background-color: blue;
     }
     </style>
     """,
