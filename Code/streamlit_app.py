@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from buzz_words_list import *
 from preprocessor import *
 import re
+import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Set up the header and description
@@ -66,18 +67,19 @@ st.markdown("### Scatter Chart")
 
 # List of values
 values = [0.20956071, 0.21296583, 0.2454957, 0.09984985, 0.21549121, 0.15568608]
+values.append(similarity_score)  # Include the similarity score in the values list
 
 # Highlight the similarity score
 highlighted_values = [val if val != similarity_score else val * 1.5 for val in values]
 
-# Plot the scatter chart
-fig, ax = plt.subplots()
-ax.scatter(range(len(values)), values, label='Values')
-ax.scatter(range(len(values)), highlighted_values, color='red', label='Highlighted Value')
+# Plot the scatter chart using Seaborn
+df_scatter = pd.DataFrame({'Index': range(len(values)), 'Value': values})
+df_scatter['Highlighted'] = [True if val == similarity_score else False for val in values]
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.scatterplot(data=df_scatter, x='Index', y='Value', hue='Highlighted', palette=['blue', 'red'], s=100)
 ax.set_xlabel('Index')
 ax.set_ylabel('Value')
 ax.set_title('Scatter Chart')
-ax.legend()
 st.pyplot(fig)
 
 # Export DataFrame to another file (e.g., CSV)
