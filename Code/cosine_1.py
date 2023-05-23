@@ -1,11 +1,9 @@
-
-
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from buzz_words_list import *
 import numpy as np
-
+from colorama import Fore, Style
 from excluded_words_list import *
 
 def get_buzz():
@@ -17,13 +15,14 @@ def get_avg_buzz():
     avg_buzz = average_score
     return avg_buzz
 
-df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
+df = pd.read_csv('C:/Users/danie/Documents/assigna-group3-1/Code/preprocessed_swe_1.csv')
 pd.set_option('display.max_colwidth', 100)
 
 
 
 mono_buzz = buzz_monograms()
 bi_buzz = buzz_bigrams()
+
 '''
 # Combine the descriptions and word list
 descriptions = df['description'].tolist()
