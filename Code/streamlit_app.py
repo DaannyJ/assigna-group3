@@ -35,9 +35,9 @@ job_ad_text = st.text_area("Paste your job ad text here")
 df = pd.DataFrame({"job_ad_text": [job_ad_text]})
 df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)
 
-# Calculate the similarity score and buzzword count
+# Calculate the similarity score and buzzword countj
 if job_ad_text:
-    buzzwords = buzz_monograms(), buzz_bigrams()
+    buzzwords = get_both()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if re.search(rf'\b{word}\b', job_ad_text.lower())])
 else:
@@ -62,37 +62,26 @@ st.markdown("### Results")
 st.markdown(f"Cosine Similarity Score: <span style='color:{score_color};'>{similarity_score:.2f}</span>", unsafe_allow_html=True)
 st.write(f"Buzzword Count: {buzzword_count}")
 
-# Scatter chart
-st.markdown("### Scatter Chart")
+# Histogram chart
+st.markdown("### Histogram Chart")
 
 # List of values
 values = get_buzz()
 values.append(similarity_score)  # Include the similarity score in the values list
 
-# Create a DataFrame for the scatter chart
-df_scatter = pd.DataFrame({'Index': range(len(values)), 'Value': values})
+# Create a DataFrame for the histogram chart
+df_histogram = pd.DataFrame({'Value': values})
 
-# Highlight the similarity score
-df_scatter['Highlighted'] = [True if val == similarity_score else False for val in values]
-
-# Plot the scatter chart using Altair
-highlight_color = alt.condition(
-    alt.datum.Highlighted,
-    alt.value('red'),
-    alt.value('steelblue')
-)
-
-scatter_chart = alt.Chart(df_scatter).mark_point(size=100, filled=True).encode(
-    x='Index',
-    y='Value',
-    color=highlight_color
+# Plot the histogram using Altair
+histogram_chart = alt.Chart(df_histogram).mark_bar().encode(
+    alt.X('Value', bin=True),
+    y='count()'
 ).properties(
     width=600,
     height=400
 )
 
-st.altair_chart(scatter_chart)
+st.altair_chart(histogram_chart)
 
 # Export DataFrame to another file (e.g., CSV)
 df.to_csv("job_ad_data.csv", index=False)
-#d
