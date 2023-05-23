@@ -44,20 +44,19 @@ def get_top_words_and_combinations(df, row_limit, num_words, num_combinations):
     word_counts = Counter(all_words)
     combination_counts = Counter(all_combinations)
 
-    # Get the most common words and combinations
-    top_words = word_counts.most_common(num_words)
-    top_combinations = combination_counts.most_common(num_combinations)
+    # Get the most common words and combinations with count > 10
+    top_words = [(word, count) for word, count in word_counts.most_common(num_words) if count >= 10]
+    top_combinations = [(combination, count) for combination, count in combination_counts.most_common(num_combinations) if count >= 10]
 
     return top_words, top_combinations
 
 
-top_words, top_combinations = get_top_words_and_combinations(data, 1000, 50, 50)
-
-print("Most common words:")
+top_words, top_combinations = get_top_words_and_combinations(data, 1000, 200, 200)
+print("👃"*50)
+print("Most common words, 10 or more occurrances:")
 for word, count in top_words:
     print(f"'{word}',")
-print()
-print("Most common two-word combinations:")
+print("✌️"*50)
+print("Most common two-word combinations, 10 or more occurrences:")
 for combination, count in top_combinations:
     print(combination, end=',\n')
-

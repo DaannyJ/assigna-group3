@@ -236,10 +236,47 @@ def buzz_monograms():
 'sammanhållning',
 'glimt',
 
-'bankid',
+'bankid', 'stjärnsälj',
+
+'servicekänsl',
+'innovativt',
+'lojal',
+'anpassningsbar',
+'familjärt',
+
+'relationsskap',
+'motivation',
+'omställning',
+'tålamod',
+'rättvis',
+'tålmod',
+'drömjobbet',
+'dediker',
 'stjärnsälj',
+'kundfokus',
+'teamkänsl',
+'fartfyllt',
+'kompetensbaser',
+'empatisk',
+'uppstart',
+'nyckelroll',
+'fartfylld',
+'glädjesprid',
+
+'tävlingsinrik',
+'passioner',
+'arbetsliv',
 
 
+'bollplank',
+'kundfokuser',
+'kundvård',
+'lösningsinrik',
+'kärnvärd',
+'återkoppling',
+'tävnlingsinrik',
+'utåtrik',
+'frihet'
 
      ]
 
@@ -477,5 +514,42 @@ def buzz_bigrams():
 
 ('social', 'utåtrik'),
 
+('stimuler', 'arbet'),
+
+('glimt', 'ögat'),
+('klättr', 'karriärsteg'),
+('redo', 'utveckl'),
+
+('socialt', 'begåv'),
+('strukturer', 'noggran'),
+('driv', 'ansvarsfull'),
+('praktisk', 'lagd'),
+('stort', 'driv'),
+
+('värld', 'bäst'),
+('hög', 'servicenivå'),
+('engager', 'driv'),
+
+('kul', 'tillsamman'),
+('driv', 'engager'),
+('noggran', 'positiv'),
+('utåtrik', 'person'),
+('lagspel', 'god'),
+('engagemang', 'driv'),
+('gill', 'högt'),
+('del', 'teamet'),
+('väx', 'knak'),
+('inställning', 'engagemang'),
+('utveckl', 'person'),
+
+('tävlingsinrik', 'driv'),
+('drivn', 'medarbet'),
+('stark', 'engagemang'),
+
+('spänn', 'projek'),
+('social', 'drivn'),
+('social', 'engager'),
+('jobb', 'problemlösning'),
+('bra', 'sammanhållning')
 
      ]
