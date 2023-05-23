@@ -174,7 +174,7 @@ def buzz_monograms():
 'kundfokuser',
 'lösningsinrik',
 'kärnvärd',
-'tävnlingsinrik',
+'tävnlingsinrik'
 
      ]
 
