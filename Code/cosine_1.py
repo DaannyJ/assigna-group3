@@ -21,7 +21,7 @@ def get_both():
 
 
 
-df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
+df = pd.read_csv('C:/Users/danie/Documents/assigna-group3-1/Code/preprocessed_swe_1.csv')
 pd.set_option('display.max_colwidth', 100)
 
 mono_buzz = buzz_monograms()
@@ -57,22 +57,22 @@ description_scores = similarity_descriptions_word_list.max(axis=1)
 # Calculate the average score of all descriptions
 average_score = np.mean(description_scores)
 
-# Get the maximum length of headline for formatting purposes
-max_headline_length = max(len(headline) for headline in df['headline'])
+# # Get the maximum length of headline for formatting purposes
+# max_headline_length = max(len(headline) for headline in df['headline'])
 
-print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
-print("--------------------------------------------------------------")
-for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
-    print(f"{i}\t\t\t{headline.ljust(max_headline_length)}\t\t{score}")
+# print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
+# print("--------------------------------------------------------------")
+# for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
+#     print(f"{i}\t\t\t{headline.ljust(max_headline_length)}\t\t{score}")
 
-print(f"\nAverage score of all descriptions: {average_score}")
+# print(f"\nAverage score of all descriptions: {average_score}")
 
-# Choose a specific description by index
-selected_index = int(input("\nEnter the index of the description you want to choose: "))
-selected_description = df.iloc[selected_index]['description']
+# # Choose a specific description by index
+# selected_index = int(input("\nEnter the index of the description you want to choose: "))
+# selected_description = df.iloc[selected_index]['description']
 
-print("\nSelected description:")
-print(selected_description)
+# print("\nSelected description:")
+# print(selected_description)
 
 
 
