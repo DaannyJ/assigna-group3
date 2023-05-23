@@ -15,7 +15,7 @@ def get_avg_buzz():
     return avg_buzz
 
 def get_both():
-    both = documents
+    both = word_list
     return both
 
 
@@ -57,13 +57,13 @@ description_scores = similarity_descriptions_word_list.max(axis=1)
 # Calculate the average score of all descriptions
 average_score = np.mean(description_scores)
 
-# # Get the maximum length of headline for formatting purposes
-# max_headline_length = max(len(headline) for headline in df['headline'])
+# Get the maximum length of headline for formatting purposes
+max_headline_length = max(len(headline) for headline in df['headline'])
 
-# print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
-# print("--------------------------------------------------------------")
-# for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
-#     print(f"{i}\t\t\t{headline.ljust(max_headline_length)}\t\t{score}")
+print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
+print("--------------------------------------------------------------")
+for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
+    print(f"{i}\t\t\t{headline.ljust(max_headline_length)}\t\t{score}")
 
 # print(f"\nAverage score of all descriptions: {average_score}")
 
@@ -71,12 +71,13 @@ average_score = np.mean(description_scores)
 # selected_index = int(input("\nEnter the index of the description you want to choose: "))
 # selected_description = df.iloc[selected_index]['description']
 
-# print("\nSelected description:")
-# print(selected_description)
+print("\nSelected description:")
+print(selected_description)
 
 
 
 #print(get_buzz())
+print(get_both())
 
 
 
