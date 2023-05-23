@@ -1,6 +1,6 @@
 def excluded_monograms():
-     return [
-'n',
+     return []
+lista453 = ['n',
 'arbet',
 'sök',
 'komm',
@@ -1471,8 +1471,9 @@ def excluded_monograms():
 
 
 def excluded_bigrams():
-        return [
-               ('tal', 'skrift'),
+        return [('thanos', 'magoulas')]
+ 
+lista = [     ('tal', 'skrift'),
 ('välkomm', 'ansökan'),
 ('stor', 'vikt'),
 ('god', 'kunskap'),
