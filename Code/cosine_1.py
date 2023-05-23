@@ -220,7 +220,7 @@ def get_buzz():
     all_buzz = description_scores.tolist()
     return all_buzz
 
-print(get_buzz())
+#print(get_buzz())
 
 
 
