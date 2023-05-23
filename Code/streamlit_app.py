@@ -35,7 +35,7 @@ job_ad_text = st.text_area("Paste your job ad text here")
 df = pd.DataFrame({"job_ad_text": [job_ad_text]})
 df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)
 
-# Calculate the similarity score and buzzword count
+# Calculate the similarity score and buzzword countj
 if job_ad_text:
     buzzwords = get_both()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
