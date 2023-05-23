@@ -37,7 +37,7 @@ df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = buzz_monograms()
+    buzzwords = buzz_monograms(), buzz_bigrams()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if re.search(rf'\b{word}\b', job_ad_text.lower())])
 else:
