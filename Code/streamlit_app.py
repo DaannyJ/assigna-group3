@@ -7,6 +7,7 @@ from preprocessor import *
 import re
 import altair as alt
 from cosine_1 import *
+
 # Set up the header and description
 st.title("Buzzwords Analysis")
 st.sidebar.markdown(

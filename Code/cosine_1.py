@@ -1,5 +1,3 @@
-
-
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -10,7 +8,6 @@ from excluded_words_list import *
 
 def get_buzz():
     all_buzz = description_scores.tolist()
-    
     return all_buzz
 
 def get_avg_buzz():
@@ -78,7 +75,7 @@ print(selected_description)
 
 '''
 
-print(get_buzz())
+#print(get_buzz())
 
 
 
