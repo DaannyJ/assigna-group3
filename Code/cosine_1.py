@@ -5,8 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from buzz_words_list import *
 import numpy as np
-from colorama import Fore, Style
-from termcolor import colored
+
 from excluded_words_list import *
 
 def get_buzz():
