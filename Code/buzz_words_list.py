@@ -231,6 +231,15 @@ def buzz_monograms():
 'kvalitetsmedvet',
 'expansion',
 
+'samarbetsvil',
+'trivsam',
+'sammanhållning',
+'glimt',
+
+'bankid',
+'stjärnsälj',
+
+
 
      ]
 
@@ -465,5 +474,8 @@ def buzz_bigrams():
 ('trygg', 'person'),
 ('lil', 'extr'),
 ('bra', 'tempo'),
+
+('social', 'utåtrik'),
+
 
      ]
