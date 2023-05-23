@@ -5,8 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from buzz_words_list import *
 from preprocessor import *
 import re
-import seaborn as sns
-import matplotlib.pyplot as plt
+import altair as alt
 
 # Set up the header and description
 st.title("Buzzwords Analysis")
@@ -33,7 +32,7 @@ job_ad_text = st.text_area("Paste your job ad text here")
 
 # Convert input text to DataFrame
 df = pd.DataFrame({"job_ad_text": [job_ad_text]})
-df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)    
+df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
@@ -69,18 +68,30 @@ st.markdown("### Scatter Chart")
 values = [0.20956071, 0.21296583, 0.2454957, 0.09984985, 0.21549121, 0.15568608]
 values.append(similarity_score)  # Include the similarity score in the values list
 
-# Highlight the similarity score
-highlighted_values = [val if val != similarity_score else val * 1.5 for val in values]
-
-# Plot the scatter chart using Seaborn
+# Create a DataFrame for the scatter chart
 df_scatter = pd.DataFrame({'Index': range(len(values)), 'Value': values})
+
+# Highlight the similarity score
 df_scatter['Highlighted'] = [True if val == similarity_score else False for val in values]
-fig, ax = plt.subplots(figsize=(8, 6))
-sns.scatterplot(data=df_scatter, x='Index', y='Value', hue='Highlighted', palette=['blue', 'red'], s=100)
-ax.set_xlabel('Index')
-ax.set_ylabel('Value')
-ax.set_title('Scatter Chart')
-st.pyplot(fig)
+
+# Plot the scatter chart using Altair
+highlight_color = alt.condition(
+    alt.datum.Highlighted,
+    alt.value('red'),
+    alt.value('steelblue')
+)
+
+scatter_chart = alt.Chart(df_scatter).mark_point(size=100, filled=True).encode(
+    x='Index',
+    y='Value',
+    color=highlight_color
+).properties(
+    width=600,
+    height=400,
+    title='Scatter Chart'
+)
+
+st.altair_chart(scatter_chart)
 
 # Export DataFrame to another file (e.g., CSV)
 df.to_csv("job_ad_data.csv", index=False)
