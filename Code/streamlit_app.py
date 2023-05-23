@@ -94,3 +94,4 @@ st.altair_chart(scatter_chart)
 
 # Export DataFrame to another file (e.g., CSV)
 df.to_csv("job_ad_data.csv", index=False)
+#d
