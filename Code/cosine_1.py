@@ -54,13 +54,14 @@ similarity_descriptions_word_list = cosine_similarity(vectorized_documents[:len(
 
 # Extract similarity scores for each description
 description_scores = similarity_descriptions_word_list.max(axis=1)
-
+print(type(description_scores))
+print(description_scores)
 # Calculate the average score of all descriptions
 average_score = np.mean(description_scores)
 
 # Get the maximum length of headline for formatting purposes
 max_headline_length = max(len(headline) for headline in df['headline'])
-
+'''
 print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
 print("--------------------------------------------------------------")
 for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
@@ -75,9 +76,9 @@ selected_description = df.iloc[selected_index]['description']
 print("\nSelected description:")
 print(selected_description)
 
+'''
 
-
-#print(get_buzz())
+print(get_buzz())
 
 
 
