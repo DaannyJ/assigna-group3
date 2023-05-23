@@ -71,18 +71,15 @@ def buzz_monograms():
 'initiativtag',
 'integritet',
 
-
 'dynamisk',
 'målsättning',
 'eftersträv',
 'värder',
 'innovation',
-'plattform',
 'nytänk',
 'ödmjuk',
 'företagskultur',
 'arbetsklim',
-'könsfördelning',
 'flexibl',
 'arbetsglädj',
 'målinrik',
@@ -103,7 +100,6 @@ def buzz_monograms():
 'systematisk',
 'potential',
 'jämställd',
-'målgrupp',
 'lösningsfokuser',
 'öppen',
 'attityd',
@@ -113,13 +109,9 @@ def buzz_monograms():
 'drömjobb',
 'drivn',
 'nyfiken',
-'management',
-'digitalisering',
+
 'individuellt',
 'förutsät',
-'covid',
-'agil',
-'expander',
 'vidareutveckl',
 'stress',
 'familjär',
@@ -149,16 +141,11 @@ def buzz_monograms():
 'kontaktnät',
 'karriärsteg',
 'prisbelönt',
-'account',
-'säkerhetsmedvet',
-'expansion',
 
 'samarbetsvil',
 'trivsam',
 'sammanhållning',
 'glimt',
-
-'bankid',
 
 'servicekänsl',
 'innovativt',
@@ -168,7 +155,6 @@ def buzz_monograms():
 
 'relationsskap',
 'motivation',
-'omställning',
 'tålamod',
 'rättvis',
 'tålmod',
@@ -179,12 +165,10 @@ def buzz_monograms():
 'teamkänsl',
 'fartfyllt',
 'empatisk',
-'uppstart',
 'nyckelroll',
 'fartfylld',
 'glädjesprid',
 'passioner',
-
 
 'bollplank',
 'kundfokuser',
@@ -216,12 +200,10 @@ def buzz_bigrams():
 
 ('tar', 'ansv'),
 ('vill', 'bidr'),
-('kund', 'behov'),
 ('positiv', 'inställning'),
 ('stort', 'engagemang'),
 ('kommunikativ', 'förmåg'),
 ('varier', 'arbetsuppgift'),
-('tillsamman', 'skap'),
 ('god', 'servic'),
 ('engager', 'medarbet'),
 
@@ -233,8 +215,6 @@ def buzz_bigrams():
 ('erbjud', 'spänn'),
 ('högt', 'tak'),
 ('samarbet', 'kolleg'),
-('jämn', 'könsfördelning'),
-('erbjud', 'möj'),
 ('ser', 'möj'),
 
 ('frihet', 'ansv'),
@@ -242,7 +222,6 @@ def buzz_bigrams():
 ('god', 'arbetsmiljö'),
 ('utveckl', 'roll'),
 ('ta', 'chans'),
-('erfaren', 'led'),
 ('skap', 'förutsättning'),
 ('utveckl', 'tillsamman'),
 ('engager', 'kolleg'),
@@ -257,7 +236,6 @@ def buzz_bigrams():
 ('gemensamm', 'mål'),
 ('mång', 'kontaktyt'),
 ('erbjud', 'trygg'),
-('skap', 'värd'),
 ('utveckl', 'yrkesroll'),
 ('gott', 'samarbet'),
 ('ständ', 'utveckl'),
@@ -337,14 +315,11 @@ def buzz_bigrams():
 ('noggran', 'positiv'),
 ('utåtrik', 'person'),
 ('gill', 'högt'),
-('väx', 'knak'),
 ('utveckl', 'person'),
 
 ('drivn', 'medarbet'),
 ('stark', 'engagemang'),
 
-('spänn', 'projek'),
-('jobb', 'problemlösning'),
 ('bra', 'sammanhållning')
 
      ]
