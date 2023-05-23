@@ -22,7 +22,7 @@ def get_avg_buzz():
 
 
 
-df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
+df = pd.read_csv('C:/Users/danie/Documents/assigna-group3-1/Code/preprocessed_swe_1.csv')
 pd.set_option('display.max_colwidth', 100)
 
 mono_buzz = buzz_monograms()
