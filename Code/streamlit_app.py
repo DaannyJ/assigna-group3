@@ -6,6 +6,7 @@ from buzz_words_list import *
 from preprocessor import *
 import re
 import altair as alt
+from cosine_1 import *
 
 # Set up the header and description
 st.title("Buzzwords Analysis")
@@ -36,7 +37,7 @@ df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = buzz_monograms()
+    buzzwords = buzz_monograms(), buzz_bigrams()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
     buzzword_count = sum([1 for word in buzzwords if re.search(rf'\b{word}\b', job_ad_text.lower())])
 else:
@@ -65,7 +66,7 @@ st.write(f"Buzzword Count: {buzzword_count}")
 st.markdown("### Scatter Chart")
 
 # List of values
-values = [0.20956071, 0.21296583, 0.2454957, 0.09984985, 0.21549121, 0.15568608]
+values = get_buzz()
 values.append(similarity_score)  # Include the similarity score in the values list
 
 # Create a DataFrame for the scatter chart
@@ -87,11 +88,11 @@ scatter_chart = alt.Chart(df_scatter).mark_point(size=100, filled=True).encode(
     color=highlight_color
 ).properties(
     width=600,
-    height=400,
-    title='Scatter Chart'
+    height=400
 )
 
 st.altair_chart(scatter_chart)
 
 # Export DataFrame to another file (e.g., CSV)
 df.to_csv("job_ad_data.csv", index=False)
+#d
