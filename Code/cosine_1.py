@@ -15,7 +15,7 @@ def get_avg_buzz():
     return avg_buzz
 
 def get_both():
-    both = documents
+    both = word_list
     return both
 
 
@@ -59,7 +59,7 @@ average_score = np.mean(description_scores)
 
 # Get the maximum length of headline for formatting purposes
 max_headline_length = max(len(headline) for headline in df['headline'])
-
+'''
 print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
 print("--------------------------------------------------------------")
 for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
@@ -73,10 +73,11 @@ selected_description = df.iloc[selected_index]['description']
 
 print("\nSelected description:")
 print(selected_description)
-
+'''
 
 
 #print(get_buzz())
+print(get_both())
 
 
 
