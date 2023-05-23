@@ -5,6 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from buzz_words_list import *
 from preprocessor import *
 import re
+import matplotlib.pyplot as plt
 
 # Set up the header and description
 st.title("Buzzwords Analysis")
@@ -59,6 +60,25 @@ else:
 st.markdown("### Results")
 st.markdown(f"Cosine Similarity Score: <span style='color:{score_color};'>{similarity_score:.2f}</span>", unsafe_allow_html=True)
 st.write(f"Buzzword Count: {buzzword_count}")
+
+# Scatter chart
+st.markdown("### Scatter Chart")
+
+# List of values
+values = [0.20956071, 0.21296583, 0.2454957, 0.09984985, 0.21549121, 0.15568608]
+
+# Highlight the similarity score
+highlighted_values = [val if val != similarity_score else val * 1.5 for val in values]
+
+# Plot the scatter chart
+fig, ax = plt.subplots()
+ax.scatter(range(len(values)), values, label='Values')
+ax.scatter(range(len(values)), highlighted_values, color='red', label='Highlighted Value')
+ax.set_xlabel('Index')
+ax.set_ylabel('Value')
+ax.set_title('Scatter Chart')
+ax.legend()
+st.pyplot(fig)
 
 # Export DataFrame to another file (e.g., CSV)
 df.to_csv("job_ad_data.csv", index=False)
