@@ -10,8 +10,8 @@ from termcolor import colored
 from excluded_words_list import *
 
 def get_buzz():
-    all_buzz = description_scores
-
+    all_buzz = description_scores.tolist()
+    
     return all_buzz
 
 def get_avg_buzz():
@@ -37,8 +37,7 @@ excluded_combinations = excluded_bigrams()
 
 documents = descriptions + word_list
 '''
-#excluded_words = excluded_monograms()
-#excluded_combinations = excluded_bigrams()
+
 excluded_words = excluded_monograms()
 excluded_combinations = excluded_bigrams()
 
@@ -53,6 +52,7 @@ for description in descriptions:
     filtered_description = ' '.join(filtered_words)
     filtered_descriptions.append(filtered_description)
 
+
 word_list_strings = [' '.join(tup) for tup in excluded_combinations]
 word_list = excluded_words + word_list_strings
 documents = filtered_descriptions + word_list_strings
@@ -61,8 +61,6 @@ vectorized_documents = vectorizer.fit_transform(documents)
 
 # Calculate similarity between descriptions and word list
 similarity_descriptions_word_list = cosine_similarity(vectorized_documents[:len(descriptions)], vectorized_documents[len(descriptions):])
-
-
 
 # Extract similarity scores for each description
 description_scores = similarity_descriptions_word_list.max(axis=1)
