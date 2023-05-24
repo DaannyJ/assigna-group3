@@ -13,8 +13,10 @@ def buzz_monograms():
 'noggran',
 'brinn',
 
+
 'teamet',
 'ansvarstag',
+'tagg',
 'motiver',
 'utman',
 'samarbetsförmåg',
@@ -43,6 +45,7 @@ def buzz_monograms():
 'flexibilitet',
 'stimuler',
 'energi',
+'energisk',
 'frihet',
 'älsk',
 'effektivt',
@@ -58,6 +61,7 @@ def buzz_monograms():
 'professionellt',
 'professionell',
 'match',
+'entusiastisk',
 'kul',
 
 'gemenskap',
@@ -160,6 +164,7 @@ def buzz_monograms():
 'tålmod',
 'drömjobbet',
 'dediker',
+'serviceinrik',
 'stjärnsälj',
 'kundfokus',
 'teamkänsl',
@@ -169,12 +174,18 @@ def buzz_monograms():
 'fartfylld',
 'glädjesprid',
 'passioner',
+'tävlingsinstink',
 
 'bollplank',
 'kundfokuser',
 'lösningsinrik',
 'kärnvärd',
-'tävnlingsinrik'
+'tävnlingsinrik',
+'uppfinningsrik',
+'initiativrik',
+'resultatorienter',
+'vinnarskall'
+
 
      ]
 
@@ -205,6 +216,7 @@ def buzz_bigrams():
 ('kommunikativ', 'förmåg'),
 ('varier', 'arbetsuppgift'),
 ('god', 'servic'),
+('hanter', 'stress')
 ('engager', 'medarbet'),
 
 ('stort', 'ansv'),
@@ -234,6 +246,7 @@ def buzz_bigrams():
 ('brinn', 'intress'),
 ('god', 'stämning'),
 ('gemensamm', 'mål'),
+('stark', 'gemenskap'),
 ('mång', 'kontaktyt'),
 ('erbjud', 'trygg'),
 ('utveckl', 'yrkesroll'),
@@ -290,6 +303,7 @@ def buzz_bigrams():
 ('balan', 'arbet'),
 
 ('hög', 'ambition'),
+('jobb', 'strukturer'),
 ('glad', 'positiv'),
 ('vilj', 'utveckl'),
 ('skap', 'relation'),
