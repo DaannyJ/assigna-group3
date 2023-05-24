@@ -57,6 +57,8 @@ description_scores = similarity_descriptions_word_list.max(axis=1)
 # Calculate the average score of all descriptions
 average_score = np.mean(description_scores)
 
+
+#PRINT ROWS: INDEX, HEADLINE, COSINE
 # Get the maximum length of headline for formatting purposes
 # max_headline_length = max(len(headline) for headline in df['headline'])
 
