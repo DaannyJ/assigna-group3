@@ -46,8 +46,11 @@ def get_buzz_scores(df):
     description_scores = calculate_cosine_scores(filtered_descriptions, word_list)
 
     return description_scores
-
-
+'''
+def get_buzz_list(description_scores):
+        buzz_list = description_scores.tolist()
+        return buzz_list
+'''
 def get_average_buzz_score(description_scores):
     average_score = np.mean(description_scores)
     return average_score
@@ -63,7 +66,7 @@ def print_description_scores(df, description_scores):
 
     print(f"\nAverage score of all descriptions: {get_average_buzz_score(description_scores)}")
 
-
+'''
 def main():
     df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
     pd.set_option('display.max_colwidth', 100)
@@ -80,5 +83,8 @@ def main():
     print(selected_description)
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     main()
+'''
+df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
+#print(get_buzz_list())
