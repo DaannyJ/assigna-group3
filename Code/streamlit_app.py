@@ -35,7 +35,7 @@ job_ad_text = st.text_area("Paste your job ad text here")
 df = pd.DataFrame({"job_ad_text": [job_ad_text]})
 df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)
 
-# Calculate the similarity score and buzzword countj
+# Calculate the similarity score and buzzword count
 if job_ad_text:
     buzzwords = get_both()
     similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
@@ -74,14 +74,24 @@ df_histogram = pd.DataFrame({'Value': values})
 
 # Plot the histogram using Altair
 histogram_chart = alt.Chart(df_histogram).mark_bar().encode(
-    alt.X('Value', bin=True),
-    y='count()'
+    alt.X('Value', bin=alt.Bin(step=0.007)),  # Specify the bin width
+    y='count()',
+    color=alt.value('lightblue')
 ).properties(
-    width=600,
+    width=700,
     height=400
 )
 
-st.altair_chart(histogram_chart)
+# Add a red dot for the similarity score
+dot_chart = alt.Chart(pd.DataFrame({'Value': [similarity_score]})).mark_point(color='red', size=100).encode(
+    x='Value',
+    y='count()'
+)
+
+# Layer the histogram and the dot chart
+layered_chart = histogram_chart + dot_chart
+
+st.altair_chart(layered_chart)
 
 # Export DataFrame to another file (e.g., CSV)
 df.to_csv("job_ad_data.csv", index=False)

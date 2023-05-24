@@ -21,7 +21,7 @@ def get_both():
 
 
 
-df = pd.read_csv('C:/Users/danie/Documents/assigna-group3/Code/preprocessed_swe_1.csv')
+df = pd.read_csv('C:/Users/danie/Documents/code/preprocessed_100k_2022.csv')
 pd.set_option('display.max_colwidth', 100)
 
 mono_buzz = buzz_monograms()
