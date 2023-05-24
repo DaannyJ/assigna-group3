@@ -16,7 +16,6 @@ def preprocess_swedish_text(text):
 
     
     text = re.sub(r'[\d+]', "", text)     # Removes numbers
-    print(text)
     
 
     tokens = word_tokenize(str(text), language='swedish')  # Tokenizer. Str conversion needed or errors will happen
