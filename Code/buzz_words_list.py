@@ -216,7 +216,7 @@ def buzz_bigrams():
 ('kommunikativ', 'förmåg'),
 ('varier', 'arbetsuppgift'),
 ('god', 'servic'),
-('hanter', 'stress')
+('hanter', 'stress'),
 ('engager', 'medarbet'),
 
 ('stort', 'ansv'),
