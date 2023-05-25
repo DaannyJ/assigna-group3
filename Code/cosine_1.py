@@ -19,8 +19,6 @@ def get_both():
     return both
 
 
-
-
 df = pd.read_csv('C:/Users/danie/Documents/datasets/Prepro2_100k.csv')
 pd.set_option('display.max_colwidth', 100)
 
