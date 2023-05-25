@@ -1,235 +1,65 @@
 import pandas as pd
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from buzz_words_list import *
-import numpy as np
-from sklearn.feature_extraction.text import CountVectorizer
 
-from excluded_words_list import *
-
-def get_buzz():
-    all_buzz = description_scores.tolist()
-    return all_buzz
-
-def get_avg_buzz():
-    avg_buzz = average_score
-    return avg_buzz
-
-def get_both():
-    both = word_list
-    return both
+# Assuming these functions are defined in buzz_words_list module
+from buzz_words_list import buzz_monograms, buzz_bigrams
 
 
-
-
+# Read the CSV file
 df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
 pd.set_option('display.max_colwidth', 100)
 
+# Get descriptions and word list
+descriptions = df['description'].tolist()
+
+# Import buzzwords monograms
 mono_buzz = buzz_monograms()
+
+# Import buzzwords bigrams
 bi_buzz = buzz_bigrams()
 
-#excluded_words = [] #excluded_monograms()
-#excluded_combinations = [('thanos','magoulas')]#excluded_bigrams()
-
-# Combine the descriptions and word list
-descriptions = df['description'].tolist()
-'''
-# Exclude words from descriptions
-#filtered_descriptions = []
-#for description in descriptions:
-    description_words = description.split()
-    filtered_words = [word for word in description_words if word not in excluded_words and word not in excluded_combinations]
-    filtered_description = ' '.join(filtered_words)
-    filtered_descriptions.append(filtered_description)
-'''
+# Create bigrams from tuples to a list
 bigrams = [' '.join(tup) for tup in bi_buzz]
 
-vectorizer = CountVectorizer(ngram_range=(2, 2))  # Set ngram_range to (2, 2) for bigrams
+# Vectorize the monograms
+vectorizer_monograms = TfidfVectorizer()
+vectorized_monograms_buzz = vectorizer_monograms.fit_transform(mono_buzz)
+vectorized_monograms_descriptions = vectorizer_monograms.transform(descriptions)
+
+# Calculate similarity between monograms and descriptions
+similarity_monograms = cosine_similarity(vectorized_monograms_descriptions, vectorized_monograms_buzz)
+
+# Extract similarity scores and feature names for each description
+description_scores_monograms = similarity_monograms.max(axis=1)
+monogram_feature_names = vectorizer_monograms.get_feature_names()
 
 # Vectorize the bigrams
-vectorized_bigrams = vectorizer.fit_transform(bigrams)
-# Get the feature names (bigrams)
-feature_names = vectorizer.get_feature_names()
+vectorizer_bigrams = TfidfVectorizer(vocabulary=bigrams, ngram_range=(2, 2))
+vectorized_bigrams = vectorizer_bigrams.fit_transform(descriptions)
 
-# Print the feature names and vectorized bigrams
-for i, vectorized_bigram in enumerate(vectorized_bigrams):
-    print(f"Sentence {i+1}:")
-    for feature_index, count in zip(vectorized_bigram.indices, vectorized_bigram.data):
-        print(f"  Bigram: {feature_names[feature_index]}, Count: {count}")
+# Calculate the scores and feature names for each bigram
+description_scores_bigrams = []
+bigram_feature_names = vectorizer_bigrams.get_feature_names()
+for i, description in enumerate(descriptions):
+    vectorized_description = vectorized_bigrams[i]
+    bigram_scores = []
+    bigrams_used = []
+    for feature_index, count in zip(vectorized_description.indices, vectorized_description.data):
+        bigram = bigram_feature_names[feature_index]
+        words = bigram.split()
+        if words[0] in description and words[1] in description:
+            bigram_scores.append(count)
+            bigrams_used.append(bigram)
+    if bigram_scores:
+        description_scores_bigrams.append(max(bigram_scores))
+    else:
+        description_scores_bigrams.append(0)
+
+    print(f"Description {i+1}:")
+    print("Monogram Score:", description_scores_monograms[i])
+    print("Monograms:", [monogram_feature_names[idx] for idx in vectorized_monograms_descriptions[i].indices])
+    print("Bigram Score:", description_scores_bigrams[i])
+    print("Bigrams:", bigrams_used)
     print()
-'''
-word_list = word_list_strings + mono_buzz
-documents = descriptions + word_list
-
-vectorizer = TfidfVectorizer()
-vectorized_documents = vectorizer.fit_transform(documents)
-'''
-
-'''
-# Calculate similarity between descriptions and word list
-similarity_descriptions_word_list = cosine_similarity(vectorized_documents[:len(descriptions)], vectorized_documents[len(descriptions):])
-
-# Extract similarity scores for each description
-description_scores = similarity_descriptions_word_list.max(axis=1)
-#print(type(description_scores))
-#print(description_scores)
-# Calculate the average score of all descriptions
-average_score = np.mean(description_scores)
-'''
-
-#PRINT ROWS: INDEX, HEADLINE, COSINE
-# Get the maximum length of headline for formatting purposes
-# max_headline_length = max(len(headline) for headline in df['headline'])
-
-# print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
-# print("--------------------------------------------------------------")
-# for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
-#     print(f"{i}\t\t\t{headline.ljust(max_headline_length)}\t\t{score}")
-
-# print(f"\nAverage score of all descriptions: {average_score}")
-
-# # Choose a specific description by index
-# selected_index = int(input("\nEnter the index of the description you want to choose: "))
-# selected_description = df.iloc[selected_index]['description']
-
-# print("\nSelected description:")
-# print(selected_description)
-
-
-
-#print(get_buzz())
-# print(get_both())
-
-
-
-
-
-'''
-# Combine the descriptions and word list
-descriptions = df['description'].tolist()
-word_list_strings = [' '.join(tup) for tup in bi_buzz]
-word_list = word_list_strings + mono_buzz
-#print(word_list)
-
-excluded_words = excluded_monograms()
-excluded_combinations = excluded_bigrams()
-
-documents = descriptions + word_list
-
-
-excluded_words = excluded_monograms()
-excluded_combinations = excluded_bigrams()
-
-# Combine the descriptions and word list
-descriptions = df['description'].tolist()
-
-# Exclude words from descriptions
-filtered_descriptions = []
-for description in descriptions:
-    description_words = description.split()
-    filtered_words = [word for word in description_words if word not in excluded_words and word not in excluded_combinations]
-    filtered_description = ' '.join(filtered_words)
-    filtered_descriptions.append(filtered_description)
-
-
-word_list_strings = [' '.join(tup) for tup in excluded_combinations]
-word_list = excluded_words + word_list
-documents = filtered_descriptions + word_list_strings
-vectorizer = TfidfVectorizer()
-vectorized_documents = vectorizer.fit_transform(documents)
-print(word_list)
-# Calculate similarity between descriptions and word list
-similarity_descriptions_word_list = cosine_similarity(vectorized_documents[:len(descriptions)], vectorized_documents[len(descriptions):])
-
-# Extract similarity scores for each description
-description_scores = similarity_descriptions_word_list.max(axis=1)
-
-# Calculate the average score of all descriptions
-average_score = np.mean(description_scores)
-
-# Calculate the average score of all descriptions
-
-max_headline_length = max(len(headline) for headline in df['headline'])
-print("Description Index\tHeadline\t\t\tSimilarity Score")
-print("--------------------------------------------------------------")
-print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
-print("--------------------------------------------------------------")
-for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
-    print(f"{i}\t\t\t{headline.ljust(max_headline_length)}\t\t{score}")
-
-
-
-print(f"\nAverage score of all descriptions: {average_score}")
-
-# Choose a specific description by index
-#selected_index = int(input("\nEnter the index of the description you want to choose: "))
-#selected_description = df.iloc[selected_index]['description']
-
-#print("\nSelected description:")
-#print(selected_description) # för att välja en description och titta i den.
-
-#print(get_buzz())
-#print(get_avg_buzz())
-
-
-import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
-from buzz_words_list import *
-import numpy as np
-
-from excluded_words_list import *
-
-df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
-pd.set_option('display.max_colwidth', 100)
-
-mono_buzz = buzz_monograms()
-bi_buzz = buzz_bigrams()
-
-excluded_words = excluded_monograms()
-excluded_combinations = excluded_bigrams()
-
-# Combine the descriptions and word list
-descriptions = df['description'].tolist()
-
-# Exclude words from descriptions
-filtered_descriptions = []
-for description in descriptions:
-    description_words = description.split()
-    filtered_words = [word for word in description_words if word not in excluded_words and word not in excluded_combinations]
-    filtered_description = ' '.join(filtered_words)
-    filtered_descriptions.append(filtered_description)
-
-word_list_strings = [' '.join(tup) for tup in bi_buzz]
-word_list = word_list_strings + mono_buzz
-documents = filtered_descriptions + word_list
-
-vectorizer = TfidfVectorizer()
-vectorized_documents = vectorizer.fit_transform(documents)
-
-# Calculate similarity between descriptions and word list
-similarity_descriptions_word_list = cosine_similarity(vectorized_documents[:len(filtered_descriptions)], vectorized_documents[len(filtered_descriptions):])
-
-# Extract similarity scores for each description
-description_scores = similarity_descriptions_word_list.max(axis=1)
-
-# Calculate the average score of all descriptions
-average_score = np.mean(description_scores)
-
-# Get the maximum length of headline for formatting purposes
-max_headline_length = max(len(headline) for headline in df['headline'])
-
-print("Description Index\tHeadline" + " "*(max_headline_length-8) + "\t\tSimilarity Score")
-print("--------------------------------------------------------------")
-for i, (headline, score) in enumerate(zip(df['headline'], description_scores), 1):
-    print(f"{i}\t\t\t{headline.ljust(max_headline_length)}\t\t{score}")
-
-print(f"\nAverage score of all descriptions: {average_score}")
-
-# Choose a specific description by index
-selected_index = int(input("\nEnter the index of the description you want to choose: "))
-selected_description = df.iloc[selected_index]['description']
-
-print("\nSelected description:")
-print(selected_description)
-'''
