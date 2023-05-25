@@ -5,8 +5,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import re
 import altair as alt
 from preprocessor import *
-from cosine_1 import get_buzz
 from buzz_words_list import buzz_monograms
+from cosine_1 import description_scores
 
 # Set up the header and description
 st.title("Buzzwords Analysis 🏄‍♂️")
@@ -82,7 +82,7 @@ st.markdown(f"<p><strong>Buzzword Count:</strong> {buzzword_count_mono}</p>", un
 st.markdown("<h3>Histogram Chart</h3>", unsafe_allow_html=True)
 
 # List of values
-values = get_buzz()
+values = description_scores
 
 # Create a DataFrame for the histogram chart
 df_histogram = pd.DataFrame({'Value': values})

@@ -6,12 +6,7 @@ import numpy as np
 
 
 
-<<<<<<< Updated upstream
 df = pd.read_csv('C:/Users/danie/Documents/datasets/Prepro2_100k.csv')
-=======
-# Read the CSV file
-df = pd.read_csv('C:/Users/jonat/Documents/GitHub/assigna-group3/Code/preprocessed_swe_1.csv')
->>>>>>> Stashed changes
 pd.set_option('display.max_colwidth', 100)
 
 # Get descriptions and monograms
