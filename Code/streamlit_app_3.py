@@ -71,6 +71,8 @@ if job_ad_text:
     similarity_score_mono = get_cosine_similarity_score(pp_input_text, ' '.join(buzzwords_mono))
     similarity_score_bi = get_cosine_similarity_score(pp_input_text, ' '.join([' '.join(bigram) for bigram in bigrams]))
 
+    #vectorizer_bigrams = TfidfVectorizer(pp_input_text=bigrams, ngram_range=(2, 2))
+
     buzzword_count_mono = len(monograms)
     buzzword_count_bi = len(bigrams)
 
