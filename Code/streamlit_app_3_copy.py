@@ -7,6 +7,9 @@ import altair as alt
 from preprocessor import *
 from buzz_words_list import buzz_monograms
 from cosine_1 import description_scores
+import nltk
+nltk.download('punkt')      # can be commented out after running for the first time
+nltk.download('stopwords')  # can be commented out after running for the first time
 
 # Set up the header and description
 st.title("Buzzwords Analysis 🏄‍♂️")
