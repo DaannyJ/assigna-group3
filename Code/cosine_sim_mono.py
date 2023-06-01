@@ -10,7 +10,7 @@ def buzz_monograms():
 'jisasdjiasdji',
 'kodkoaasdsdkod']
 
-df = pd.read_csv('C:/Users/carlt/Documents/TIG326/kod till projektet/assigna-group3/Code/preprocessed_swe_1.csv')  # Replace 'your_dataframe.csv' with the actual filename
+df = pd.read_csv('C:/Users/danie/Documents/assigna-group3/Code/preprocessed_swe_1.csv')  # Replace 'your_dataframe.csv' with the actual filename
 
 descriptions = df['description']
 
