@@ -1,9 +1,9 @@
 ### HELLO!!
 ### This is code that removes special characters and numbers, tokenizes, stems, and removes stopwords from a column in a csv 
 ## Removing punctuation, numbers. Tokenization, stemming and stopword removal'
-import nltk
-def preprocess_swedish_text(text):
 
+def preprocess_swedish_text(text):
+    import nltk
     import string   # needed for punctuation removal
     import re       # needed for numbers removal
     nltk.download('punkt')      # can be commented out after running for the first time
