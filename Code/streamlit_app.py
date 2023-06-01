@@ -1,15 +1,18 @@
 import streamlit as st
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import CountVectorizer
-from buzz_words_list import *
-from preprocessor import *
+from sklearn.feature_extraction.text import TfidfVectorizer
 import re
 import altair as alt
-from cosine_1 import *
+from preprocessor import *
+from buzz_words_list import buzz_monograms
+from cosine_1 import description_scores
+import nltk
+nltk.download('punkt')      # can be commented out after running for the first time
+nltk.download('stopwords')  # can be commented out after running for the first time
 
 # Set up the header and description
-st.title("Buzzwords Analysis")
+st.title("Buzzwords Analysis 🏄‍♂️")
 st.sidebar.markdown(
     """
     ## Description
@@ -22,7 +25,8 @@ st.sidebar.markdown(
 # Define the function to get the cosine similarity score
 def get_cosine_similarity_score(text1, text2):
     corpus = [text1, text2]
-    vectorizer = CountVectorizer()
+    corpus = [str(p) for p in corpus] # this is bad code. Evil. But necessary.
+    vectorizer = TfidfVectorizer()
     X = vectorizer.fit_transform(corpus)
     similarity_scores = cosine_similarity(X)
     return similarity_scores[0][1]
@@ -30,68 +34,79 @@ def get_cosine_similarity_score(text1, text2):
 # Define the main content area
 st.markdown("### Enter Job Ad Text")
 job_ad_text = st.text_area("Paste your job ad text here")
+print(type(job_ad_text))
 
 # Convert input text to DataFrame
 df = pd.DataFrame({"job_ad_text": [job_ad_text]})
 df['job_ad_text'] = df['job_ad_text'].apply(preprocess_swedish_text)
+# Other necessary conversions
+asdfasdf = df['job_ad_text'].tolist()
+pp_input_text = str(asdfasdf)
 
 # Calculate the similarity score and buzzword count
 if job_ad_text:
-    buzzwords = get_both()
-    similarity_score = get_cosine_similarity_score(job_ad_text, ' '.join(buzzwords))
-    buzzword_count = sum([1 for word in buzzwords if re.search(rf'\b{word}\b', job_ad_text.lower())])
+    buzzwords_mono = buzz_monograms()
+    all_words = re.findall(r'\w+', pp_input_text.lower())
+    # Filter words and keep only the ones that are present in buzzwords_mono. 
+    monograms = [word for word in all_words if word in buzzwords_mono]
+    
+    # join the input text with buzzwords list and calculate the cosine similarity score
+    similarity_score_mono = get_cosine_similarity_score(pp_input_text, ' '.join(buzzwords_mono))
+
+    buzzword_count_mono = len(monograms)
+
+    # Set the highlight_value after calculating the similarity score
+    highlight_value = similarity_score_mono
+
 else:
-    similarity_score = 0
-    buzzword_count = 0
+    similarity_score_mono = 0
+    buzzword_count_mono = 0
+    highlight_value = -1  # Set a value outside the bin range to keep the highlight visible
 
 # Define the color thresholds
 high_threshold = 0.8
 low_threshold = 0.5
 
 # Format the similarity score dynamically based on its value
-score_color = ""
-if similarity_score > high_threshold:
-    score_color = "red"
-elif similarity_score < low_threshold:
-    score_color = "green"
+score_color_mono = ""
+if similarity_score_mono > high_threshold:
+    score_color_mono = "red"
+elif similarity_score_mono < low_threshold:
+    score_color_mono = "green"
 else:
-    score_color = "orange"
+    score_color_mono = "orange"
 
 # Display the results
-st.markdown("### Results")
-st.markdown(f"Cosine Similarity Score: <span style='color:{score_color};'>{similarity_score:.2f}</span>", unsafe_allow_html=True)
-st.write(f"Buzzword Count: {buzzword_count}")
+st.markdown("<h3>Results</h3>", unsafe_allow_html=True)
+st.markdown(f"<p><strong>Buzz Score (Cosine Similarity):</strong> <span style='color:{score_color_mono}; font-size: 24px;'>{similarity_score_mono:.2f}</span></p>", unsafe_allow_html=True)
+st.markdown(f"<p><strong>Buzzword Count:</strong> {buzzword_count_mono}</p>", unsafe_allow_html=True)
 
 # Histogram chart
-st.markdown("### Histogram Chart")
+st.markdown("<h3>Histogram Chart</h3>", unsafe_allow_html=True)
 
 # List of values
-values = get_buzz()
-values.append(similarity_score)  # Include the similarity score in the values list
+values = description_scores
 
 # Create a DataFrame for the histogram chart
 df_histogram = pd.DataFrame({'Value': values})
 
-# Plot the histogram using Altair
-histogram_chart = alt.Chart(df_histogram).mark_bar().encode(
-    alt.X('Value', bin=alt.Bin(step=0.007)),  # Specify the bin width
+bin_size = 0.007
+bin_max = df_histogram['Value'].max()
+
+# Create the histogram chart with explicit bin transform
+histogram_chart = alt.Chart(df_histogram).transform_bin(
+    "binned_value", "Value", bin=alt.Bin(maxbins=int(bin_max / bin_size))
+).mark_bar().encode(
+    x=alt.X('binned_value:Q', title='Value Bins'),
     y='count()',
-    color=alt.value('lightblue')
+    tooltip=['count()', 'binned_value:Q']  # Add tooltips for count and value
 ).properties(
-    width=700,
-    height=400
+    width=700,  # Set the width of the histogram chart
+    height=400  # Set the height of the histogram chart
 )
 
-# Add a red dot for the similarity score
-dot_chart = alt.Chart(pd.DataFrame({'Value': [similarity_score]})).mark_point(color='red', size=100).encode(
-    x='Value',
-    y='count()'
-)
-
-# Layer the histogram and the dot chart
-layered_chart = histogram_chart + dot_chart
-
-st.altair_chart(layered_chart)
+# Display the histogram chart
+st.altair_chart(histogram_chart)
 
 # Export DataFrame to another file (e.g., CSV)
 df.to_csv("job_ad_data.csv", index=False)
