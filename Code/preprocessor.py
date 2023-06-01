@@ -1,12 +1,13 @@
 ### HELLO!!
 ### This is code that removes special characters and numbers, tokenizes, stems, and removes stopwords from a column in a csv 
-## Removing punctuation, numbers. Tokenization, stemming and stopword removal
+## Removing punctuation, numbers. Tokenization, stemming and stopword removal'
+import nltk
 def preprocess_swedish_text(text):
 
     import string   # needed for punctuation removal
     import re       # needed for numbers removal
-    # nltk.download('punkt')      # can be commented out after running for the first time
-    # nltk.download('stopwords')  # can be commented out after running for the first time
+    nltk.download('punkt')      # can be commented out after running for the first time
+    nltk.download('stopwords')  # can be commented out after running for the first time
     from nltk.tokenize import word_tokenize
     from nltk.corpus import stopwords
     from nltk.stem.snowball import SnowballStemmer
