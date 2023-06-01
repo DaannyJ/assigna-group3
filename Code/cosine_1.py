@@ -6,7 +6,7 @@ import numpy as np
 
 
 
-df = pd.read_csv("preprocessed_swe_1")
+df = pd.read_csv('preprocessed_swe_1.csv')
 pd.set_option('display.max_colwidth', 100)
 
 # Get descriptions and monograms
